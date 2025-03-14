@@ -1,14 +1,1 @@
 /* Your global CSS here */
-.mapboxgl-ctrl-logo {
-    display: none !important;
-  }
-
-  body {
-    padding-top: 54px; /* Default mobile height */
-  }
-  
-  @media (min-width: 600px) {
-    body {
-      padding-top: 64px; /* Desktop/tablet height */
-    }
-  }

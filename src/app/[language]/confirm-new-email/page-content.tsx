@@ -8,6 +8,7 @@ import {
   useAuthGetMeService,
 } from "@/services/api/services/auth";
 import { useRouter } from "next/navigation";
+import { useSnackbar } from "@/hooks/use-snackbar";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid2";
 import HTTP_CODES_ENUM from "@/services/api/types/http-codes";
@@ -16,6 +17,7 @@ import useAuthActions from "@/services/auth/use-auth-actions";
 import useAuth from "@/services/auth/use-auth";
 
 export default function ConfirmNewEmail() {
+  const { enqueueSnackbar } = useSnackbar();
   const fetchConfirmNewEmail = useAuthConfirmNewEmailService();
   const fetchAuthGetMe = useAuthGetMeService();
   const router = useRouter();
@@ -37,6 +39,10 @@ export default function ConfirmNewEmail() {
       });
 
       if (status === HTTP_CODES_ENUM.NO_CONTENT) {
+        enqueueSnackbar(t("confirm-new-email:emailConfirmed"), {
+          variant: "success",
+        });
+
         if (user) {
           const { data, status: statusGetMe } = await fetchAuthGetMe();
 
@@ -49,6 +55,9 @@ export default function ConfirmNewEmail() {
           router.replace("/");
         }
       } else {
+        enqueueSnackbar(t("confirm-new-email:emailConfirmFailed"), {
+          variant: "error",
+        });
         router.replace("/");
       }
     };
@@ -57,11 +66,12 @@ export default function ConfirmNewEmail() {
   }, [
     fetchConfirmNewEmail,
     router,
+    enqueueSnackbar,
     t,
     isLoaded,
     setUser,
-    user,
     fetchAuthGetMe,
+    user,
   ]);
 
   return (

@@ -1,94 +1,86 @@
-# iXplor
+# Extensive React Boilerplate
 
-[![image](https://ixplor-profile-s3-bucket-02.s3.us-east-2.amazonaws.com/373bfa62bf4ee07e57b4e.png)](https://ixplor.app)
+[![image](https://github.com/brocoders/extensive-react-boilerplate/assets/72293912/052e74be-7de0-4a4a-92a6-e6a4b68fd4b5)](https://github.com/new?template_name=extensive-react-boilerplate&template_owner=brocoders)
 
-# iXplor App
+**Belongs to the [bc boilerplates](https://bcboilerplates.com/) ecosystem**
 
-A Next.js-based adventure activity booking platform that connects travelers with local vendors offering tours, lessons, rentals, and tickets.
+## Table of Contents <!-- omit in toc -->
 
-## Features
+- [Extensive React Boilerplate](#extensive-react-boilerplate)
+  - [Description](#description)
+  - [Getting Started](#getting-started)
+  - [Features](#features)
+  - [Screenshots](#screenshots)
+  - [Contributors](#contributors)
+  - [Support](#support)
 
-- **Interactive Map Interface**: Browse vendors and activities with a dynamic map
-- **Advanced Search**: Filter by activity type, location, and price range
-- **Vendor Management**: Complete vendor onboarding and product management system
-- **Booking System**: Seamless cart and checkout process
-- **Admin Panel**: Comprehensive tools for managing vendors, products, and users
-- **Multi-language Support**: Built-in internationalization
-- **Real-time Updates**: Live status tracking for bookings and approvals
+## Description
 
-## Tech Stack
+ReactJS Boilerplate for a typical project.
 
-- **Framework**: Next.js 14 with App Router
-- **UI**: Material-UI v5, Tailwind CSS
-- **Maps**: Mapbox GL JS, Google Places API
-- **State Management**: React Query, Context API
-- **Forms**: React Hook Form, Yup validation
-- **Authentication**: Custom JWT with social login support
-- **Internationalization**: i18next
+[Full documentation here](/docs/README.md)
 
-## Setup
+Demo: <https://react-boilerplate-coral.vercel.app>
 
-1. Clone the repository:
+Backend: <https://github.com/brocoders/nestjs-boilerplate>
+
+## Getting Started
+
+First, run the development server:
+
 ```bash
-git clone https://github.com/yourusername/ixplor-app.git
-```
+cp example.env.local .env.local
 
-2. Install dependencies:
-```bash
-cd ixplor-app
-npm install
-```
-
-3. Set up environment variables:
-```env
-NEXT_PUBLIC_API_URL=your_api_url
-NEXT_PUBLIC_MAPBOX_TOKEN=your_mapbox_token
-NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_key
-NEXT_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id
-NEXT_PUBLIC_IS_SIGN_UP_ENABLED=true
-```
-
-4. Run development server:
-```bash
 npm run dev
 ```
 
-## Project Structure
+## Features
 
-```
-src/
-├── app/                   # App router pages and layouts
-├── components/           # Reusable UI components
-├── services/            # API services and utilities
-├── hooks/               # Custom React hooks
-└── types/              # TypeScript type definitions
-```
+- [x] Next.js
+- [x] TypeScript
+- [x] [i18n](https://react.i18next.com/) (based on https://github.com/i18next/next-13-app-dir-i18next-example)
+- [x] [Material UI](https://mui.com/). Supports dark mode.
+- [x] [React Hook Form](https://react-hook-form.com/)
+- [x] React Query
+- [x] Auth (Sign in, Sign up, Reset password, Confirm email, Refresh Token)
+- [x] User management (CRUD)
+- [x] File Upload
+- [x] E2E tests ([Playwright](https://playwright.dev/))
+- [x] ESLint
+- [x] CI (GitHub Actions)
 
-## Development Guidelines
+## Screenshots
 
-- Follow TypeScript best practices
-- Use Material-UI components and styling system
-- Implement responsive design patterns
-- Write unit tests for critical components
-- Document complex functions and components
+<img width="1552" alt="Sign In" src="https://github.com/brocoders/extensive-react-boilerplate/assets/6001723/5d42cd15-685b-4ae7-951d-4c8ed89c5390">
 
-## Environment Variables
+<img width="1552" alt="Sign Up" src="https://github.com/brocoders/extensive-react-boilerplate/assets/6001723/aca2d405-2155-4755-8d0e-d41bdc0db852">
 
-Required environment variables:
+<img width="1552" alt="Users list" src="https://github.com/brocoders/extensive-react-boilerplate/assets/6001723/244409c0-2235-4018-b062-44fb54ea4321">
 
-- `NEXT_PUBLIC_API_URL`: Backend API URL
-- `NEXT_PUBLIC_MAPBOX_TOKEN`: Mapbox access token
-- `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`: Google Maps API key
-- `NEXT_PUBLIC_GOOGLE_CLIENT_ID`: Google OAuth client ID
+<img width="1552" alt="Create user" src="https://github.com/brocoders/extensive-react-boilerplate/assets/6001723/cb86a3e1-331f-4bd7-9668-3c6cf44eb372">
 
-## Contributing
+## Contributors
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Shchepotin"><img src="https://avatars.githubusercontent.com/u/6001723?v=4?s=100" width="100px;" alt="Vladyslav Shchepotin"/><br /><sub><b>Vladyslav Shchepotin</b></sub></a><br /><a href="#maintenance-Shchepotin" title="Maintenance">🚧</a> <a href="#doc-Shchepotin" title="Documentation">📖</a> <a href="#code-Shchepotin" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ElenVlass"><img src="https://avatars.githubusercontent.com/u/72293912?v=4?s=100" width="100px;" alt="Elena Vlasenko"/><br /><sub><b>Elena Vlasenko</b></sub></a><br /><a href="#doc-ElenVlass" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/TetianaFomina"><img src="https://avatars.githubusercontent.com/u/72749258?v=4?s=100" width="100px;" alt="TetianaFomina"/><br /><sub><b>TetianaFomina</b></sub></a><br /><a href="#test-TetianaFomina" title="Tests">⚠️</a> <a href="#bug-TetianaFomina" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/LiudmylaKostenko"><img src="https://avatars.githubusercontent.com/u/55603883?v=4?s=100" width="100px;" alt="Liudmyla Kostenko"/><br /><sub><b>Liudmyla Kostenko</b></sub></a><br /><a href="#code-LiudmylaKostenko" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://brocoders.com"><img src="https://avatars.githubusercontent.com/u/226194?v=4?s=100" width="100px;" alt="Rodion"/><br /><sub><b>Rodion</b></sub></a><br /><a href="#business-sars" title="Business development">💼</a></td>
+    </tr>
+  </tbody>
+</table>
 
-## License
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
 
-[MIT License](LICENSE)
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+## Support
+
+If you seek consulting, support, or wish to collaborate, please get in touch with us via [boilerplates@brocoders.com](boilerplates@brocoders.com) or feel free to ask us on [GitHub Discussions](https://github.com/brocoders/extensive-react-boilerplate/discussions). We are totally open to any suggestions and improvements.

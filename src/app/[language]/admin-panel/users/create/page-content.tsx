@@ -9,6 +9,7 @@ import FormTextInput from "@/components/form/text-input/form-text-input";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import withPageRequiredAuth from "@/services/auth/with-page-required-auth";
+import { useSnackbar } from "@/hooks/use-snackbar";
 import Link from "@/components/link";
 import FormAvatarInput from "@/components/form/avatar-input/form-avatar-input";
 import { FileEntity } from "@/services/api/types/file-entity";
@@ -21,7 +22,7 @@ import { useRouter } from "next/navigation";
 import { Role, RoleEnum } from "@/services/api/types/role";
 import FormSelectInput from "@/components/form/select/form-select";
 
-type CreateUserFormData = {
+type CreateFormData = {
   email: string;
   firstName: string;
   lastName: string;
@@ -103,7 +104,9 @@ function FormCreateUser() {
   const { t } = useTranslation("admin-panel-users-create");
   const validationSchema = useValidationSchema();
 
-  const methods = useForm<CreateUserFormData>({
+  const { enqueueSnackbar } = useSnackbar();
+
+  const methods = useForm<CreateFormData>({
     resolver: yupResolver(validationSchema),
     defaultValues: {
       email: "",
@@ -123,7 +126,7 @@ function FormCreateUser() {
   const onSubmit = handleSubmit(async (formData) => {
     const { data, status } = await fetchPostUser(formData);
     if (status === HTTP_CODES_ENUM.UNPROCESSABLE_ENTITY) {
-      (Object.keys(data.errors) as Array<keyof CreateUserFormData>).forEach(
+      (Object.keys(data.errors) as Array<keyof CreateFormData>).forEach(
         (key) => {
           setError(key, {
             type: "manual",
@@ -136,6 +139,9 @@ function FormCreateUser() {
       return;
     }
     if (status === HTTP_CODES_ENUM.CREATED) {
+      enqueueSnackbar(t("admin-panel-users-create:alerts.user.success"), {
+        variant: "success",
+      });
       router.push("/admin-panel/users");
     }
   });
@@ -151,14 +157,11 @@ function FormCreateUser() {
               </Typography>
             </Grid>
             <Grid size={{ xs: 12 }}>
-              <FormAvatarInput<CreateUserFormData>
-                name="photo"
-                testId="photo"
-              />
+              <FormAvatarInput<CreateFormData> name="photo" testId="photo" />
             </Grid>
 
             <Grid size={{ xs: 12 }}>
-              <FormTextInput<CreateUserFormData>
+              <FormTextInput<CreateFormData>
                 name="email"
                 testId="new-user-email"
                 autoComplete="new-user-email"
@@ -167,7 +170,7 @@ function FormCreateUser() {
             </Grid>
 
             <Grid size={{ xs: 12 }}>
-              <FormTextInput<CreateUserFormData>
+              <FormTextInput<CreateFormData>
                 name="password"
                 type="password"
                 testId="new-user-password"
@@ -177,7 +180,7 @@ function FormCreateUser() {
             </Grid>
 
             <Grid size={{ xs: 12 }}>
-              <FormTextInput<CreateUserFormData>
+              <FormTextInput<CreateFormData>
                 name="passwordConfirmation"
                 testId="new-user-password-confirmation"
                 label={t(
@@ -188,7 +191,7 @@ function FormCreateUser() {
             </Grid>
 
             <Grid size={{ xs: 12 }}>
-              <FormTextInput<CreateUserFormData>
+              <FormTextInput<CreateFormData>
                 name="firstName"
                 testId="first-name"
                 label={t("admin-panel-users-create:inputs.firstName.label")}
@@ -196,7 +199,7 @@ function FormCreateUser() {
             </Grid>
 
             <Grid size={{ xs: 12 }}>
-              <FormTextInput<CreateUserFormData>
+              <FormTextInput<CreateFormData>
                 name="lastName"
                 testId="last-name"
                 label={t("admin-panel-users-create:inputs.lastName.label")}
@@ -204,7 +207,7 @@ function FormCreateUser() {
             </Grid>
 
             <Grid size={{ xs: 12 }}>
-              <FormSelectInput<CreateUserFormData, Pick<Role, "id">>
+              <FormSelectInput<CreateFormData, Pick<Role, "id">>
                 name="role"
                 testId="role"
                 label={t("admin-panel-users-create:inputs.role.label")}
@@ -214,12 +217,6 @@ function FormCreateUser() {
                   },
                   {
                     id: RoleEnum.USER,
-                  },
-                  {
-                    id: RoleEnum.VENDOR,
-                  },
-                  {
-                    id: RoleEnum.PREVENDOR,
                   },
                 ]}
                 keyValue="id"

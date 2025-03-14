@@ -84,7 +84,7 @@ function AvatarInput(props: AvatarInputProps) {
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
       if (isLoading) return; // Prevent multiple uploads while loading
-      
+
       setIsLoading(true);
       try {
         const { status, data } = await fetchFileUpload(acceptedFiles[0]);
@@ -92,7 +92,7 @@ function AvatarInput(props: AvatarInputProps) {
           onChange(data.file);
         }
       } catch (error) {
-        console.error('File upload failed:', error);
+        console.error("File upload failed:", error);
       } finally {
         setIsLoading(false);
       }
@@ -103,25 +103,24 @@ function AvatarInput(props: AvatarInputProps) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-      'image/*': [], // Accept all image types
+      "image/*": [], // Accept all image types
     },
     maxFiles: 1,
     disabled: isLoading || props.disabled,
     // Remove maxSize constraint
   });
 
-
-  const removeAvatarHandle = useCallback((
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    event.stopPropagation();
-    onChange(null);
-  }, [onChange]);
+  const removeAvatarHandle = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      event.stopPropagation();
+      onChange(null);
+    },
+    [onChange]
+  );
 
   const handleButtonClick = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
   }, []);
-
 
   return (
     <AvatarInputContainer {...getRootProps()}>
@@ -194,7 +193,6 @@ function AvatarInput(props: AvatarInputProps) {
     </AvatarInputContainer>
   );
 }
-
 
 function FormAvatarInput<
   TFieldValues extends FieldValues = FieldValues,

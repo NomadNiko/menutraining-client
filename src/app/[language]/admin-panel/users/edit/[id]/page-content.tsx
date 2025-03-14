@@ -10,6 +10,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import withPageRequiredAuth from "@/services/auth/with-page-required-auth";
 import { useEffect } from "react";
+import { useSnackbar } from "@/hooks/use-snackbar";
 import Link from "@/components/link";
 import FormAvatarInput from "@/components/form/avatar-input/form-avatar-input";
 import { FileEntity } from "@/services/api/types/file-entity";
@@ -133,6 +134,7 @@ function FormEditUser() {
   const fetchPatchUser = usePatchUserService();
   const { t } = useTranslation("admin-panel-users-edit");
   const validationSchema = useValidationEditUserSchema();
+  const { enqueueSnackbar } = useSnackbar();
 
   const methods = useForm<EditUserFormData>({
     resolver: yupResolver(validationSchema),
@@ -171,6 +173,9 @@ function FormEditUser() {
     }
     if (status === HTTP_CODES_ENUM.OK) {
       reset(formData);
+      enqueueSnackbar(t("admin-panel-users-edit:alerts.user.success"), {
+        variant: "success",
+      });
     }
   });
 
@@ -244,12 +249,6 @@ function FormEditUser() {
                   {
                     id: RoleEnum.USER,
                   },
-                  {
-                    id: RoleEnum.VENDOR,
-                  },
-                  {
-                    id: RoleEnum.PREVENDOR,
-                  },
                 ]}
                 keyValue="id"
                 renderOption={(option) =>
@@ -284,6 +283,7 @@ function FormChangePasswordUser() {
   const fetchPatchUser = usePatchUserService();
   const { t } = useTranslation("admin-panel-users-edit");
   const validationSchema = useValidationChangePasswordSchema();
+  const { enqueueSnackbar } = useSnackbar();
 
   const methods = useForm<ChangeUserPasswordFormData>({
     resolver: yupResolver(validationSchema),
@@ -315,6 +315,9 @@ function FormChangePasswordUser() {
     }
     if (status === HTTP_CODES_ENUM.OK) {
       reset();
+      enqueueSnackbar(t("admin-panel-users-edit:alerts.password.success"), {
+        variant: "success",
+      });
     }
   });
 

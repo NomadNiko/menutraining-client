@@ -7,9 +7,13 @@ async function wrapperFetchJsonResponse<T>(
   const status = response.status as FetchJsonResponse<T>["status"];
   return {
     status,
-    data: status === HTTP_CODES_ENUM.NO_CONTENT
+    data: [
+      HTTP_CODES_ENUM.NO_CONTENT,
+      HTTP_CODES_ENUM.SERVICE_UNAVAILABLE,
+      HTTP_CODES_ENUM.INTERNAL_SERVER_ERROR,
+    ].includes(status)
       ? undefined
-      : await response.json()
+      : await response.json(),
   };
 }
 

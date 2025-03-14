@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import FormTextInput from "@/components/form/text-input/form-text-input";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useSnackbar } from "@/hooks/use-snackbar";
 import { useRouter } from "next/navigation";
 import HTTP_CODES_ENUM from "@/services/api/types/http-codes";
 import { useTranslation } from "@/services/i18n/client";
@@ -94,6 +95,7 @@ function ExpiresAlert() {
 }
 
 function Form() {
+  const { enqueueSnackbar } = useSnackbar();
   const fetchAuthResetPassword = useAuthResetPasswordService();
   const { t } = useTranslation("password-change");
   const validationSchema = useValidationSchema();
@@ -135,6 +137,10 @@ function Form() {
     }
 
     if (status === HTTP_CODES_ENUM.NO_CONTENT) {
+      enqueueSnackbar(t("password-change:alerts.success"), {
+        variant: "success",
+      });
+
       router.replace("/sign-in");
     }
   });

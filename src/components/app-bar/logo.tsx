@@ -1,27 +1,36 @@
-import { styled } from "@mui/material/styles";
-import Typography, { TypographyProps } from "@mui/material/Typography";
+"use client";
+import Typography from "@mui/material/Typography";
 import { useTranslation } from "@/services/i18n/client";
 
-type LogoTypographyProps = TypographyProps<"a", { component: "a" }>;
+interface LogoProps {
+  isMobile?: boolean;
+}
 
-const StyledLogoTypography = styled(Typography)<LogoTypographyProps>(({ theme }) => ({
-  marginRight: theme.spacing(2),
-  display: "none",
-  fontWeight: 700,
-  fontFamily: "Iceland, serif",
-  fontSize: "1.5rem",
-  color: "inherit",
-  textDecoration: "none",
-  [theme.breakpoints.up("md")]: {
-    display: "flex",
-  },
-}));
-
-export const Logo = () => {
+const Logo = ({ isMobile = false }: LogoProps) => {
   const { t } = useTranslation("common");
+
   return (
-    <StyledLogoTypography variant="h6" noWrap component="a" href="/">
+    <Typography
+      variant={isMobile ? "h5" : "h6"}
+      noWrap
+      component="a"
+      href="/"
+      sx={{
+        mr: 2,
+        display: isMobile
+          ? { xs: "flex", md: "none" }
+          : { xs: "none", md: "flex" },
+        flexGrow: isMobile ? 1 : 0,
+        fontFamily: "monospace",
+        fontWeight: 700,
+        letterSpacing: ".3rem",
+        color: "inherit",
+        textDecoration: "none",
+      }}
+    >
       {t("common:app-name")}
-    </StyledLogoTypography>
+    </Typography>
   );
 };
+
+export default Logo;

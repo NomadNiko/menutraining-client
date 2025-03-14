@@ -74,9 +74,6 @@ function TimePickerInputRaw(
             InputProps: {
               readOnly: props.readOnly,
             },
-            InputLabelProps: {
-              shrink: true
-            }
           },
         }}
         onAccept={props.onChange}
@@ -90,7 +87,6 @@ function TimePickerInputRaw(
     </LocalizationProvider>
   );
 }
-
 function FormTimePickerInput<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,

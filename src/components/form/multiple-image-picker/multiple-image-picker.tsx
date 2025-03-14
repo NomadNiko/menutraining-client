@@ -28,6 +28,7 @@ type MultipleImagePickerProps = {
   value?: FileEntity[];
   disabled?: boolean;
   testId?: string;
+  label?: React.ReactNode;
 };
 
 const MultipleImagePickerContainer = styled("div")(({ theme }) => ({
@@ -63,7 +64,14 @@ const StyledOverlay = styled("div")(() => {
     "&:hover": {
       opacity: 1,
     },
+    zIndex: 1,
   };
+});
+
+const StyledImageWrapper = styled("div")({
+  position: "relative",
+  width: "100%",
+  height: "100%",
 });
 
 function MultipleImagePicker(props: MultipleImagePickerProps) {
@@ -143,7 +151,19 @@ function MultipleImagePicker(props: MultipleImagePickerProps) {
                     />
                   </IconButton>
                 </StyledOverlay>
-                <Image src={item.path} alt="Upload Images" loading="lazy" />
+                <StyledImageWrapper>
+                  <Image
+                    src={item.path}
+                    alt={
+                      t("common:formInputs.multipleImageInput.imageAlt") ||
+                      "Uploaded image"
+                    }
+                    fill
+                    style={{ objectFit: "cover" }}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    priority
+                  />
+                </StyledImageWrapper>
               </ImageListItem>
             ))}
           </ImageList>
@@ -188,6 +208,7 @@ function FormMultipleImagePicker<
   props: Pick<ControllerProps<TFieldValues, TName>, "name" | "defaultValue"> & {
     disabled?: boolean;
     testId?: string;
+    label?: React.ReactNode;
   }
 ) {
   return (
@@ -201,6 +222,7 @@ function FormMultipleImagePicker<
           value={field.value}
           error={fieldState.error?.message}
           disabled={props.disabled}
+          label={props.label}
           testId={props.testId}
         />
       )}

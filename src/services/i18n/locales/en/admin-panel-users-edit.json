@@ -35,9 +35,7 @@
       },
       "options": {
         "1": "Admin",
-        "2": "User",
-        "3": "Vendor",
-        "4": "PreVendor"
+        "2": "User"
       }
     },
     "password": {
@@ -53,7 +51,8 @@
         "required": "Password confirmation is required",
         "match": "Password confirmation must match password"
       }
-    }
+    },
+    "<system>": "Do not remove this property"
   },
   "alerts": {
     "password": {

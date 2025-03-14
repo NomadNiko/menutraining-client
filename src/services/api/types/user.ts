@@ -7,7 +7,7 @@ export enum UserProviderEnum {
 }
 
 export type User = {
-  id: number | string;
+  id: string;
   email: string;
   firstName?: string;
   lastName?: string;
@@ -15,5 +15,4 @@ export type User = {
   provider?: UserProviderEnum;
   socialId?: string;
   role?: Role;
-  vendorProfileIds?: string[]; 
 };

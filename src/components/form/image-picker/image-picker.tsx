@@ -28,6 +28,7 @@ type ImagePickerProps = {
   value?: FileEntity;
   disabled?: boolean;
   testId?: string;
+  label?: React.ReactNode;
 };
 
 const ImagePickerContainer = styled("div")(({ theme }) => ({
@@ -63,7 +64,14 @@ const StyledOverlay = styled("div")(() => {
     "&:hover": {
       opacity: 1,
     },
+    zIndex: 1,
   };
+});
+
+const StyledImageWrapper = styled("div")({
+  position: "relative",
+  width: "100%",
+  height: "100%",
 });
 
 function ImagePicker(props: ImagePickerProps) {
@@ -123,7 +131,7 @@ function ImagePicker(props: ImagePickerProps) {
             }}
             variant="h5"
           >
-            {t("common:formInputs.multipleImageInput.dropzoneText")}
+            {t("common:formInputs.singleImageInput.dropzoneText")}
           </Typography>
         </Box>
       )}
@@ -142,7 +150,19 @@ function ImagePicker(props: ImagePickerProps) {
                   />
                 </IconButton>
               </StyledOverlay>
-              <Image src={props.value.path} alt="Uploaded image" loading="lazy" />
+              <StyledImageWrapper>
+                <Image
+                  src={props.value.path}
+                  alt={
+                    t("common:formInputs.singleImageInput.imageAlt") ||
+                    "Uploaded image"
+                  }
+                  fill
+                  style={{ objectFit: "cover" }}
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  priority
+                />
+              </StyledImageWrapper>
             </ImageListItem>
           </ImageList>
         </>
@@ -159,14 +179,14 @@ function ImagePicker(props: ImagePickerProps) {
         >
           {isLoading
             ? t("common:loading")
-            : t("common:formInputs.multipleImageInput.selectFile")}
+            : t("common:formInputs.singleImageInput.selectFile")}
           <input {...getInputProps()} />
         </Button>
       </Box>
 
       <Box sx={{ mt: 1 }}>
         <Typography>
-          {t("common:formInputs.multipleImageInput.dragAndDrop")}
+          {t("common:formInputs.singleImageInput.dragAndDrop")}
         </Typography>
       </Box>
 
@@ -186,6 +206,7 @@ function FormImagePicker<
   props: Pick<ControllerProps<TFieldValues, TName>, "name" | "defaultValue"> & {
     disabled?: boolean;
     testId?: string;
+    label?: React.ReactNode;
   }
 ) {
   return (
@@ -200,6 +221,7 @@ function FormImagePicker<
           error={fieldState.error?.message}
           disabled={props.disabled}
           testId={props.testId}
+          label={props.label}
         />
       )}
     />

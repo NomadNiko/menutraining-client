@@ -3,29 +3,10 @@
   "title1": "Edit Profile",
   "title2": "Change Email",
   "title3": "Change Password",
-  "dashboard": {
-    "title": "Dashboard",
-    "subtitle": "Welcome to your personal dashboard",
-    "recentActivity": "Recent Activity",
-    "quickActions": "Quick Actions",
-    "sections": {
-      "profile": "Profile Information",
-      "tickets": "Recent Tickets",
-      "receipts": "Recent Transactions",
-      "serviceDesk": "Service Desk"
-    }
-  },
-  "viewAll": "View All",
   "actions": {
     "edit": "Edit",
     "submit": "Save",
-    "cancel": "Cancel",
-    "back": "Back to Profile",
-    "viewTickets": "View All Tickets",
-    "viewReceipts": "View All Receipts",
-    "viewServiceDesk": "View Service Desk",
-    "viewAll": "View All",
-    "save": "Save"
+    "cancel": "Cancel"
   },
   "inputs": {
     "firstName": {
@@ -93,46 +74,5 @@
     "profile": {
       "success": "Profile has been updated successfully"
     }
-  },
-  "stats": {
-    "activeTickets": "Active Tickets",
-    "pastTickets": "Past Tickets",
-    "receipts": "Total Receipts",
-    "supportTickets": "Support Tickets"
-  },
-  "quickLinks": {
-    "editProfile": "Edit Profile",
-    "security": "Security Settings",
-    "preferences": "Preferences",
-    "help": "Help & Support"
-  },
-  "tickets": {
-    "title": "Your Tickets",
-    "upcomingTickets": "Upcoming Tickets",
-    "noUpcomingTickets": "No upcoming tickets",
-    "viewAll": "View All Tickets",
-    "loading": "Loading tickets..."
-  },
-  "receipts": {
-    "title": "Recent Transactions",
-    "noReceipts": "No recent transactions",
-    "viewAll": "View All Receipts",
-    "loading": "Loading transactions...",
-    "itemsCount": "items",
-    "total": "Total",
-    "status": {
-      "succeeded": "Complete",
-      "pending": "Pending",
-      "failed": "Failed"
-    }
-  },
-  "serviceDesk": {
-    "title": "Service Desk",
-    "noTickets": "No support tickets",
-    "viewAll": "View All Tickets"
-  },
-  "loading": {
-    "profile": "Loading profile...",
-    "general": "Loading..."
   }
 }

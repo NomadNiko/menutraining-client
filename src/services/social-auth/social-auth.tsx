@@ -1,6 +1,8 @@
 "use client";
 
 import Grid from "@mui/material/Grid2";
+import FacebookAuth from "./facebook/facebook-auth";
+import { isFacebookAuthEnabled } from "./facebook/facebook-config";
 import GoogleAuth from "./google/google-auth";
 import { isGoogleAuthEnabled } from "./google/google-config";
 
@@ -12,11 +14,11 @@ export default function SocialAuth() {
           <GoogleAuth />
         </Grid>
       )}
-      {/* {isFacebookAuthEnabled && (
+      {isFacebookAuthEnabled && (
         <Grid container size={{ xs: 12 }} direction="column">
           <FacebookAuth />
         </Grid>
-      )} */}
+      )}
     </Grid>
   );
 }
