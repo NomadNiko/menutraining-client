@@ -1,0 +1,29 @@
+{
+    "title": "Ticket Validation",
+    "status": {
+      "active": "Ticket Active",
+      "redeemed": "Ticket Redeemed",
+      "cancelled": "Ticket Cancelled",
+      "revoked": "Ticket Revoked"
+    },
+    "fields": {
+      "quantity": "Quantity",
+      "date": "Date",
+      "time": "Time",
+      "transactionId": "Transaction ID"
+    },
+    "actions": {
+      "redeem": "Redeem Ticket"
+    },
+    "success": {
+      "ticketRedeemed": "Ticket successfully redeemed"
+    },
+    "errors": {
+      "missingTicketId": "Ticket ID is required",
+      "unauthorized": "Unauthorized access",
+      "failedToLoad": "Failed to load ticket",
+      "fetchFailed": "Failed to fetch ticket information",
+      "ticketNotFound": "Ticket not found",
+      "redeemFailed": "Failed to redeem ticket"
+    }
+  }

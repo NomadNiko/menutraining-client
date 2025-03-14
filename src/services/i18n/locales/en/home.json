@@ -1,0 +1,98 @@
+{
+  "title": "iXplor - Find Your Adventure",
+  "searchPlaceholder": {
+    "vendor": "  Search for a Vendor...",
+    "location": "  Search for an Address..."
+  },
+  "learnMore": "Learn More",
+  "filters": {
+    "tours": "Tours",
+    "lessons": "Lessons",
+    "rentals": "Rentals",
+    "tickets": "Tickets"
+  },
+  "errors": {
+    "failedToLoadVendors": "Failed to load vendors. Please try again later.",
+    "locationError": "Unable to get your location. Please check your settings.",
+    "connectionError": "Connection error. Please check your internet connection.",
+    "fetchFailed": "Failed to fetch nearby activities. Please try again.",
+    "addToCartFailed": "Failed to add activity to cart"
+  },
+  "success": {
+    "addedToCart": "Activity added to cart successfully"
+  },
+  "nearbyActivities": "Nearby Activities",
+  "noNearbyActivities": "No nearby activities found",
+  "nearbyVendors": "Nearby Vendors",
+  "noNearbyVendors": "No nearby vendors found",
+  "upcomingTickets": "Upcoming Tickets",
+  "pleaseLogin": "Please Login to See Tickets...",
+  "login": "Login",
+  "pastReceipts": "Past Receipts",
+  "navigation": {
+    "map": "Map",
+    "favorites": "Favorites",
+    "bookings": "Bookings",
+    "profile": "Profile"
+  },
+  "actions": {
+    "search": "Search",
+    "filter": "Filter",
+    "clearFilters": "Clear Filters",
+    "viewMore": "View More",
+    "book": "Book Now",
+    "contact": "Contact",
+    "directions": "Get Directions"
+  },
+  "tooltips": {
+    "locationButton": "Use my current location",
+    "filterButton": "Filter results",
+    "searchButton": "Search this area"
+  },
+  "accessibility": {
+    "mapControls": "Map controls",
+    "filterControls": "Filter controls",
+    "searchBar": "Search for activities",
+    "vendorList": "List of vendors"
+  },
+  "labels": {
+    "nearMe": "Near Me",
+    "popular": "Popular",
+    "trending": "Trending",
+    "newListings": "New Listings",
+    "distance": "Distance",
+    "rating": "Rating",
+    "price": "Price",
+    "availability": "Availability"
+  },
+  "categories": {
+    "tours": {
+      "label": "Tours",
+      "description": "Guided adventures and experiences"
+    },
+    "lessons": {
+      "label": "Lessons",
+      "description": "Learn from local experts"
+    },
+    "rentals": {
+      "label": "Rentals",
+      "description": "Equipment and gear rentals"
+    },
+    "tickets": {
+      "label": "Tickets",
+      "description": "Attractions and events"
+    }
+  },
+  "placeholders": {
+    "noResults": "No vendors found in this area",
+    "loading": "Loading vendors...",
+    "error": "Error loading vendors",
+    "noLocation": "Location services not available"
+  },
+  "info": {
+    "resultCount": "{{count}} vendors found",
+    "searchArea": "Searching in {{area}}",
+    "zoomPrompt": "Zoom in to see more details",
+    "filterPrompt": "Use filters to refine results"
+  }
+}

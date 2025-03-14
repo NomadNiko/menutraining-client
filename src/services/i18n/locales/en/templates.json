@@ -1,0 +1,64 @@
+{
+  "title": "Product Templates",
+  "subtitle": "Create and manage your product templates",
+  "templateCreation": "Create Product Template",
+  "editTemplate": "Edit Template",
+  "editSubtitle": "Modify your template details",
+  "generateProducts": "Generate Products",
+  "generationSubtitle": "Generate products from this template",
+  "searchPlaceholder": "Search templates...",
+  "filters": "Filters",
+  "addTemplate": "Add Template",
+  "updated": "Updated",
+  "scheduling": "Scheduling",
+  "availability": "Availability",
+  "additionalDetails": "Additional Details",
+  "date": "Date",
+  "startTime": "Start Time",
+  "duration": "Duration",
+  "quantity": "Quantity",
+  "price": "Price",
+  "instructorName": "Instructor Name",
+  "tourGuide": "Tour Guide",
+  "notes": "Notes",
+  "selectDates": "Select dates for product generation",
+  "timeRequired": "Please select a start time",
+  "requirementsHelp": "Add requirements for this product",
+  "waiver": "Waiver Text",
+  "status": {
+    "draft": "Draft",
+    "published": "Published",
+    "archived": "Archived"
+  },
+  "templateNotFound": "Template not found",
+  "deleteConfirm": {
+    "title": "Delete Template",
+    "message": "Are you sure you want to delete this template?",
+    "confirm": "Delete",
+    "cancel": "Cancel"
+  },
+  "success": {
+    "templateCreated": "Template created successfully",
+    "updated": "Template updated successfully",
+    "deleted": "Template deleted successfully",
+    "itemsGenerated": "{{count}} items generated successfully",
+    "status": {
+      "draft": "Template set to draft",
+      "published": "Template published successfully",
+      "archived": "Template archived successfully"
+    }
+  },
+  "errors": {
+    "unauthorized": "You must be signed in",
+    "createFailed": "Failed to create template",
+    "updateFailed": "Failed to update template",
+    "deleteFailed": "Failed to delete template",
+    "generationFailed": "Failed to generate products",
+    "loadFailed": "Failed to load template",
+    "statusUpdateFailed": "Failed to update status"
+  },
+  "cancel": "Cancel",
+  "edit": "Edit",
+  "generate": "Generate",
+  "generateItems": "Generate Items"
+}

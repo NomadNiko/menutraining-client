@@ -1,0 +1,79 @@
+{
+  "title": "My Tickets",
+  "upcomingTickets": "Upcoming Tickets",
+  "oldTickets": "Past Tickets",
+  "noUpcomingTickets": "You don't have any upcoming tickets",
+  "noOldTickets": "You don't have any past tickets",
+  "viewAll": "View All",
+  "pleaseLogin": "Please login to see your owned Upcoming Tickets",
+  "ticketDetails": {
+    "title": "Ticket Details",
+    "qrCode": "QR Code",
+    "scanToVerify": "Scan to verify ticket",
+    "date": "Date",
+    "time": "Time",
+    "status": "Status",
+    "transactionId": "Transaction ID",
+    "quantity": "Quantity",
+    "description": "Description"
+  },
+  "actions": {
+    "viewDetails": "View Details",
+    "export": "Export",
+    "close": "Close",
+    "share": "Share",
+    "download": "Download",
+    "print": "Print"
+  },
+  "status": {
+    "ACTIVE": "Active",
+    "CANCELLED": "Cancelled",
+    "REDEEMED": "Used",
+    "REVOKED": "Revoked",
+    "active": "ACTIVE",
+    "redeemed": "REDEEMED",
+    "cancelled": "CANCELLED",
+    "revoked": "REVOKED"
+  },
+  "errors": {
+    "loadFailed": "Failed to load tickets",
+    "unauthorized": "Please sign in to view your tickets",
+    "exportFailed": "Failed to export ticket",
+    "downloadFailed": "Failed to download ticket",
+    "shareFailed": "Failed to share ticket"
+  },
+  "filters": {
+    "all": "All Tickets",
+    "active": "Active",
+    "used": "Used",
+    "cancelled": "Cancelled"
+  },
+  "sort": {
+    "date": "Date",
+    "name": "Name",
+    "status": "Status"
+  },
+  "messages": {
+    "ticketExpired": "This ticket has expired",
+    "ticketCancelled": "This ticket has been cancelled",
+    "ticketRedeemed": "This ticket has been used",
+    "ticketRevoked": "This ticket has been revoked"
+  },
+  "info": {
+    "validUntil": "Valid until",
+    "purchasedOn": "Purchased on",
+    "redeemedOn": "Used on",
+    "cancelledOn": "Cancelled on",
+    "revokedOn": "Revoked on"
+  },
+  "notAvailable": "N/A",
+  "ticketStatus": "Ticket Status",
+  "date": "Date",
+  "time": "Time",
+  "duration": "Duration",
+  "quantity": "Quantity",
+  "viewLocation": "View Location",
+  "export": "Export",
+  "close": "Close",
+  "hourUnit": "h"
+}

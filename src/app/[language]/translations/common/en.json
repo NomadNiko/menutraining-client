@@ -1,0 +1,14 @@
+{
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "fieldRequired": "This field is required",
+    "validationMin": "Minimum value is {{min}}",
+    "validationMax": "Maximum value is {{max}}",
+    "validationPattern": "Invalid format",
+    "preview": "Preview",
+    "address": "Address",
+    "city": "City",
+    "state": "State",
+    "postalCode": "Postal Code"
+  }

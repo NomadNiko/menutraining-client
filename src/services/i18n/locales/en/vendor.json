@@ -1,0 +1,76 @@
+{
+    "learnMore": "Learn More",
+    "about": "About",
+    "location": "Location", 
+    "contact": "Contact",
+    "visitWebsite": "Visit Website",
+    "availableProducts": "Available Products",
+    "addToCart": "Add to Cart",
+    "addingToCart": "Adding to Cart...",
+    "noProducts": "This Vendor does not sell Products yet.",
+    "vendorTypes": {
+      "tours": "Tours",
+      "lessons": "Lessons",
+      "rentals": "Rentals",
+      "tickets": "Tickets"
+    },
+    "status": {
+      "SUBMITTED": "Submitted",
+      "PENDING_APPROVAL": "Pending Approval",
+      "ACTION_NEEDED": "Action Needed",
+      "APPROVED": "Approved",
+      "REJECTED": "Rejected"
+    },
+    "profile": {
+      "baseInfo": "Basic Information",
+      "contactInfo": "Contact Information",
+      "locationInfo": "Location Information"
+    },
+    "actions": {
+      "close": "Close",
+      "viewMore": "View More",
+      "contact": "Contact",
+      "book": "Book Now",
+      "getDirections": "Get Directions"
+    },
+    "filters": {
+      "nearMe": "Near Me",
+      "sortBy": "Sort By",
+      "distance": "Distance",
+      "rating": "Rating",
+      "priceRange": "Price Range"
+    },
+    "notifications": {
+      "contactSuccess": "Message sent successfully",
+      "contactError": "Error sending message",
+      "bookingSuccess": "Booking confirmed",
+      "bookingError": "Error making booking"
+    },
+    "businessHours": {
+      "title": "Business Hours",
+      "open": "Open",
+      "closed": "Closed",
+      "today": "Today"
+    },
+    "validation": {
+      "required": "This field is required",
+      "invalidEmail": "Please enter a valid email address",
+      "invalidPhone": "Please enter a valid phone number",
+      "invalidWebsite": "Please enter a valid website URL",
+      "invalidPostalCode": "Please enter a valid postal code"
+    },
+    "errors": {
+      "notFound": "Vendor not found",
+      "loadFailed": "Failed to load vendor information",
+      "locationUnavailable": "Location services unavailable",
+      "addToCartFailed":"Add to Cart Failed. Try again later."
+    },
+    "success": {
+      "addedToCart": "Added to Cart"
+    },
+    "placeholders": {
+      "searchVendors": "Search vendors...",
+      "selectType": "Select vendor type",
+      "enterLocation": "Enter location"
+    }
+  }

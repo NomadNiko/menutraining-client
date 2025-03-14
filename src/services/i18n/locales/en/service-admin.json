@@ -1,0 +1,58 @@
+{
+    "title": "Service Desk Admin",
+    "subtitle": "Manage and monitor all support tickets across the platform",
+    "ticket": "Ticket",
+    "noTickets": "No tickets found",
+    "allTickets": "All Support Tickets",
+    "latestUpdate": "Latest Update",
+    "updates": "Updates History",
+    "filters": {
+      "search": "Search tickets",
+      "status": "Filter by Status",
+      "dateRange": "Date Range",
+      "all": "All",
+      "allTime": "All Time",
+      "today": "Today",
+      "thisWeek": "This Week",
+      "thisMonth": "This Month",
+      "clear": "Clear All Filters"
+    },
+    "sort": {
+      "created": "Creation Date",
+      "lastUpdate": "Last Updated",
+      "status": "Status"
+    },
+    "status": {
+      "opened": "Opened",
+      "assigned": "Assigned",
+      "hold": "On Hold",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    },
+    "fields": {
+      "status": "Status",
+      "assignUser": "Assign To",
+      "category": "Category",
+      "ticketId": "Ticket ID"
+    },
+    "actions": {
+      "assign": "Assign",
+      "updateStatus": "Update Status",
+      "edit": "Edit Ticket",
+      "viewDetails": "View Details",
+      "addUpdate": "Add Update"
+    },
+    "success": {
+      "assigned": "User assigned successfully",
+      "statusUpdated": "Status updated successfully",
+      "ticketUpdated": "Ticket details updated successfully"
+    },
+    "errors": {
+      "loadFailed": "Failed to load tickets",
+      "unauthorized": "Unauthorized access",
+      "loadUsersFailed": "Failed to load users",
+      "assignFailed": "Failed to assign user",
+      "statusUpdateFailed": "Failed to update status",
+      "updateFailed": "Failed to update ticket"
+    }
+  }

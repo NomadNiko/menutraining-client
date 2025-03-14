@@ -1,0 +1,115 @@
+{
+  "title": "Secure Checkout",
+  "returnPage": {
+    "title": "Order Confirmation",
+    "success": {
+      "title": "Payment Successful!",
+      "message": "Thank you for your purchase. Your tickets have been generated and are ready to use.",
+      "viewTickets": "View My Tickets",
+      "backToHome": "Return to Home"
+    },
+    "failure": {
+      "title": "Payment Failed",
+      "message": "We were unable to process your payment. Please try again.",
+      "tryAgain": "Try Again",
+      "backToCart": "Return to Cart",
+      "contactSupport": "Contact Support"
+    },
+    "actions": {
+    "backToCart": "Back to Cart",
+    "backToHome": "Return to Home",
+    "tryAgain": "Try Again",
+    "contactSupport": "Contact Support",
+    "continueToPayment": "Continue to Payment",
+    "placeOrder": "Place Order",
+    "payNow": "Pay Now"
+  },
+    "processing": {
+      "title": "Processing Payment",
+      "message": "Please wait while we process your payment..."
+    },
+    "ticketGeneration": {
+      "title": "Your Tickets",
+      "message": "Here are your tickets for this purchase:",
+      "downloadAll": "Download All Tickets",
+      "viewAll": "View All Tickets"
+    }
+  },
+  "steps": {
+    "billing": "Billing Information",
+    "payment": "Payment",
+    "confirmation": "Confirmation"
+  },
+  "summary": {
+    "title": "Order Summary",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "total": "Total",
+    "items": "Items"
+  },
+  "success": {
+    "title": "Payment Successful!",
+    "message": "Thank you for your purchase. Your payment has been processed successfully.",
+    "paymentComplete": "Your payment has been completed successfully.",
+    "orderNumber": "Order Number",
+    "emailConfirmation": "A confirmation email has been sent to",
+    "downloadReceipt": "Download Receipt"
+  },
+  "failure": {
+    "title": "Payment Failed",
+    "message": "We were unable to process your payment. Please try again or use a different payment method.",
+    "contactSupport": "If this problem persists, please contact our support team."
+  },
+  "errors": {
+    "initializationFailed": "Failed to initialize checkout. Please try again.",
+    "paymentFailed": "Payment processing failed. Please try again.",
+    "statusCheckFailed": "Unable to verify payment status. Please contact support if payment was completed.",
+    "sessionExpired": "Your checkout session has expired. Please try again.",
+    "invalidCart": "Your cart appears to be invalid or empty.",
+    "networkError": "Network error occurred. Please check your connection and try again.",
+    "unauthorized": "Please sign in to complete your purchase.",
+    "generic": "An error occurred. Please try again later."
+  },
+  "actions": {
+    "backToCart": "Back to Cart",
+    "backToHome": "Return to Home",
+    "tryAgain": "Try Again",
+    "contactSupport": "Contact Support",
+    "continueToPayment": "Continue to Payment",
+    "placeOrder": "Place Order",
+    "payNow": "Pay Now"
+  },
+  "placeholders": {
+    "cardNumber": "Card Number",
+    "expiryDate": "MM/YY",
+    "cvc": "CVC",
+    "nameOnCard": "Name on Card"
+  },
+  "labels": {
+    "orderDate": "Order Date",
+    "paymentMethod": "Payment Method",
+    "billingAddress": "Billing Address",
+    "shippingAddress": "Shipping Address",
+    "orderDetails": "Order Details",
+    "quantity": "Quantity",
+    "price": "Price",
+    "amount": "Amount"
+  },
+  "messages": {
+    "processingPayment": "Processing your payment...",
+    "doNotRefresh": "Please do not refresh or close this page.",
+    "secureBadge": "Secure SSL Encrypted Payment",
+    "paymentDisclaimer": "Your payment information is processed securely",
+    "termsAndConditions": "By placing your order, you agree to our Terms of Service and Privacy Policy"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidCard": "Invalid card number",
+    "invalidExpiry": "Invalid expiry date",
+    "invalidCVC": "Invalid CVC",
+    "cardDeclined": "Your card was declined",
+    "insufficientFunds": "Insufficient funds",
+    "invalidAmount": "Invalid payment amount",
+    "invalidCurrency": "Invalid currency"
+  }
+}

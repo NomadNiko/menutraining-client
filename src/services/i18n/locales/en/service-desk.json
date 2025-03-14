@@ -1,0 +1,79 @@
+{
+    "title": "Support",
+    "description": "Welcome to our support center. Create a ticket to get help from our team.",
+    "yourTickets": "Your Tickets",
+    "allTickets": "All Support Tickets",
+    "noTickets": "No tickets found",
+    "ticket": "Ticket",
+    "latestUpdate": "Latest Update",
+    "updates": "Updates History",
+    "noUpdates": "No updates yet",
+    "filters": {
+      "search": "Search tickets",
+      "status": "Filter by Status",
+      "dateRange": "Date Range",
+      "all": "All",
+      "allTime": "All Time",
+      "today": "Today",
+      "thisWeek": "This Week",
+      "thisMonth": "This Month",
+      "clear": "Clear Filters"
+    },
+  
+    "sort": {
+      "created": "Creation Date",
+      "lastUpdate": "Last Updated",
+      "status": "Status"
+    },
+  
+    "fields": {
+      "status": "Status",
+      "assignUser": "Assign To",
+      "category": "Category",
+      "title": "Title",
+      "description": "Description",
+      "updateText": "Update Message"
+    },
+  
+    "actions": {
+      "createTicket": "Create New Ticket",
+      "addUpdate": "Add Update",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "save": "Save",
+      "assign": "Assign",
+      "updateStatus": "Update Status",
+      "edit": "Edit Ticket",
+      "viewDetails": "View Details",
+      "resolve": "Resolve Ticket",
+      "close": "Close"
+    },
+  
+    "status": {
+      "opened": "Open",
+      "assigned": "Assigned",
+      "hold": "On Hold",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    },
+  
+    "success": {
+      "ticketCreated": "Support ticket created successfully",
+      "updateAdded": "Update added successfully",
+      "assigned": "User assigned successfully",
+      "statusUpdated": "Status updated successfully",
+      "ticketUpdated": "Ticket updated successfully"
+    },
+  
+    "errors": {
+      "loadFailed": "Failed to load tickets",
+      "createFailed": "Failed to create ticket",
+      "updateFailed": "Failed to add update",
+      "unauthorized": "You are not authorized to perform this action",
+      "loadUsersFailed": "Failed to load users",
+      "assignFailed": "Failed to assign user",
+      "statusUpdateFailed": "Failed to update status"
+    }, "adminPage": {
+      "title": "Service Desk Admin"
+    }
+  }

@@ -1,0 +1,37 @@
+User-agent: *
+
+# Allow main public routes
+Allow: /
+Allow: /en/
+Allow: /*/tickets
+Allow: /*/cart
+Allow: /*/receipts
+
+# Block admin and private routes
+Disallow: /*/admin/
+Disallow: /*/approvals/
+Disallow: /*/vendor-admin/
+Disallow: /*/inventory/
+Disallow: /*/service-admin/
+Disallow: /*/validation/
+Disallow: /*/vendor-account/
+Disallow: /*/vendor-status/
+Disallow: /*/sign-in
+Disallow: /*/sign-up
+Disallow: /*/profile
+Disallow: /*/password-change
+Disallow: /*/forgot-password
+
+# Block API routes
+Disallow: /api/
+
+# Block sensitive patterns
+Disallow: /*?*token=
+Disallow: /*?*hash=
+Disallow: /*?*returnTo=
+
+# Crawl delay directive
+Crawl-delay: 1
+
+# Sitemap reference
+Sitemap: https://ixplor.app/sitemap.xml

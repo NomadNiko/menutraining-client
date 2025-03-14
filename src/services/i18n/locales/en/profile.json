@@ -1,0 +1,138 @@
+{
+  "title": "Profile",
+  "title1": "Edit Profile",
+  "title2": "Change Email",
+  "title3": "Change Password",
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Welcome to your personal dashboard",
+    "recentActivity": "Recent Activity",
+    "quickActions": "Quick Actions",
+    "sections": {
+      "profile": "Profile Information",
+      "tickets": "Recent Tickets",
+      "receipts": "Recent Transactions",
+      "serviceDesk": "Service Desk"
+    }
+  },
+  "viewAll": "View All",
+  "actions": {
+    "edit": "Edit",
+    "submit": "Save",
+    "cancel": "Cancel",
+    "back": "Back to Profile",
+    "viewTickets": "View All Tickets",
+    "viewReceipts": "View All Receipts",
+    "viewServiceDesk": "View Service Desk",
+    "viewAll": "View All",
+    "save": "Save"
+  },
+  "inputs": {
+    "firstName": {
+      "label": "First Name",
+      "validation": {
+        "required": "First Name is required"
+      }
+    },
+    "lastName": {
+      "label": "Last Name",
+      "validation": {
+        "required": "Last Name is required"
+      }
+    },
+    "email": {
+      "label": "New Email",
+      "validation": {
+        "required": "Email is required",
+        "email": "Email must be valid",
+        "currentEmail": "Email must be different from current email",
+        "server": {
+          "emailExists": "Email is already taken"
+        }
+      }
+    },
+    "emailConfirmation": {
+      "label": "Email Confirmation",
+      "validation": {
+        "required": "Email Confirmation is required",
+        "match": "Email Confirmation must match email"
+      }
+    },
+    "oldPassword": {
+      "label": "Old Password",
+      "validation": {
+        "required": "Old Password is required",
+        "min": "Old Password must be at least 6 characters long",
+        "server": {
+          "incorrectOldPassword": "Old Password is not valid"
+        }
+      }
+    },
+    "password": {
+      "label": "New Password",
+      "validation": {
+        "required": "New Password is required",
+        "min": "New Password must be at least 6 characters long"
+      }
+    },
+    "passwordConfirmation": {
+      "label": "Password Confirmation",
+      "validation": {
+        "required": "Password Confirmation is required",
+        "match": "Password Confirmation must match password"
+      }
+    }
+  },
+  "alerts": {
+    "email": {
+      "success": "Request to change email has been sent to your new email address. Please check your email and click on the link to confirm the change."
+    },
+    "password": {
+      "success": "Password has been updated successfully"
+    },
+    "profile": {
+      "success": "Profile has been updated successfully"
+    }
+  },
+  "stats": {
+    "activeTickets": "Active Tickets",
+    "pastTickets": "Past Tickets",
+    "receipts": "Total Receipts",
+    "supportTickets": "Support Tickets"
+  },
+  "quickLinks": {
+    "editProfile": "Edit Profile",
+    "security": "Security Settings",
+    "preferences": "Preferences",
+    "help": "Help & Support"
+  },
+  "tickets": {
+    "title": "Your Tickets",
+    "upcomingTickets": "Upcoming Tickets",
+    "noUpcomingTickets": "No upcoming tickets",
+    "viewAll": "View All Tickets",
+    "loading": "Loading tickets..."
+  },
+  "receipts": {
+    "title": "Recent Transactions",
+    "noReceipts": "No recent transactions",
+    "viewAll": "View All Receipts",
+    "loading": "Loading transactions...",
+    "itemsCount": "items",
+    "total": "Total",
+    "status": {
+      "succeeded": "Complete",
+      "pending": "Pending",
+      "failed": "Failed"
+    }
+  },
+  "serviceDesk": {
+    "title": "Service Desk",
+    "noTickets": "No support tickets",
+    "viewAll": "View All Tickets"
+  },
+  "loading": {
+    "profile": "Loading profile...",
+    "general": "Loading..."
+  }
+}

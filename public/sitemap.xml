@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Home page with language alternatives -->
+  <url>
+    <loc>https://ixplor.app/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ixplor.app/en"/>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Main public pages -->
+  <url>
+    <loc>https://ixplor.app/en/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://ixplor.app/en/tickets</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://ixplor.app/en/cart</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://ixplor.app/en/receipts</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Dynamic vendor pages will be generated programmatically -->
+  <!-- Example of dynamic vendor entry:
+  <url>
+    <loc>https://ixplor.app/en/vendors/[vendor-id]</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  -->
+
+  <!-- Dynamic product pages will be generated programmatically -->
+  <!-- Example of dynamic product entry:
+  <url>
+    <loc>https://ixplor.app/en/products/[product-id]</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  -->
+
+</urlset>
