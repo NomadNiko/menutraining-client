@@ -41,3 +41,8 @@ next-env.d.ts
 
 *storybook.log
 .codegpt
+.hygen/*
+.husky/*
+.vscode/*
+.vscode-test/*
+.storybook/*

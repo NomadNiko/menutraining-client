@@ -18,9 +18,13 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@commitlint/ensure": "^19.8.0",
+    "@commitlint/message": "^19.8.0",
+    "@commitlint/to-lines": "^19.8.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@faker-js/faker": "^9.0.0",
+    "@fontsource-variable/oxanium": "^5.2.5",
     "@fontsource/roboto": "^5.0.8",
     "@hookform/resolvers": "^3.2.0",
     "@mui/icons-material": "6.4.0",
@@ -33,6 +37,7 @@
     "@types/react": "19.0.7",
     "@types/react-dom": "19.0.3",
     "accept-language": "^3.0.18",
+    "commitlint": "^19.8.0",
     "date-fns": "^3.6.0",
     "dotenv": "^16.3.1",
     "eslint": "8.57.1",

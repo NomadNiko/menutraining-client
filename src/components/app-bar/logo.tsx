@@ -21,9 +21,7 @@ const Logo = ({ isMobile = false }: LogoProps) => {
           ? { xs: "flex", md: "none" }
           : { xs: "none", md: "flex" },
         flexGrow: isMobile ? 1 : 0,
-        fontFamily: "monospace",
-        fontWeight: 700,
-        letterSpacing: ".3rem",
+        fontWeight: 600,
         color: "inherit",
         textDecoration: "none",
       }}

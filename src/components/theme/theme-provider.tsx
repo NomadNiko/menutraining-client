@@ -14,6 +14,21 @@ function ThemeProvider(props: PropsWithChildren<{}>) {
           colorSchemeSelector: "class",
         },
         colorSchemes: { light: true, dark: true },
+        typography: {
+          fontFamily: "'Oxanium Variable', sans-serif",
+        },
+        components: {
+          MuiCssBaseline: {
+            styleOverrides: `
+              @font-face {
+                font-family: 'Oxanium Variable';
+                src: url('/fonts/Iansui-Regular.ttf') format('truetype'); // Adjust the path and format as needed
+                font-weight: normal;
+                font-style: normal;
+              }
+            `,
+          },
+        },
       }),
     []
   );
