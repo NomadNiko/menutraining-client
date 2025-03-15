@@ -4,6 +4,7 @@
   "navigation": {
     "home": "Home",
     "signIn": "Sign In",
+    "menuManagement": "Menu Admin",
     "signUp": "Sign Up",
     "profile": "Profile",
     "users": "Users",

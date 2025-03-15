@@ -15,17 +15,16 @@ import ImageUpload from "../ImageUpload";
 import FormMultipleSelectInput from "@/components/form/multiple-select/form-multiple-select";
 import { Allergy } from "@/types/allergy";
 import removeDuplicatesFromArrayObjects from "@/services/helpers/remove-duplicates-from-array-objects";
+import { ApiError } from "@/services/api/types/api-error";
 
-// Create a type alias that matches the structure expected by the form
 type AllergyOption = {
   allergyId: string;
   allergyName: string;
-  _id: string;
 };
 
 type CreateIngredientFormData = {
   ingredientName: string;
-  ingredientAllergies: string[]; // Store just the allergyId strings
+  ingredientAllergies: AllergyOption[];
   ingredientImageUrl?: string;
   subIngredients?: string[];
 };
@@ -34,11 +33,18 @@ const useValidationSchema = () => {
   const { t } = useTranslation("common");
   return yup.object().shape({
     ingredientName: yup.string().required(t("common:validation.required")),
-    ingredientAllergies: yup.array().of(yup.string().defined()).default([]), // ensure no undefined values
+    ingredientAllergies: yup
+      .array()
+      .of(
+        yup.object().shape({
+          allergyId: yup.string().required(),
+          allergyName: yup.string().required(),
+        })
+      )
+      .default([]),
   });
 };
 
-// Create a separate component for form actions to use useFormState
 function FormActions() {
   const { t } = useTranslation("common");
   const { isSubmitting } = useFormState();
@@ -73,24 +79,21 @@ const CreateIngredientForm: React.FC = () => {
 
   const validationSchema = useValidationSchema();
   const methods = useForm<CreateIngredientFormData>({
-    resolver: yupResolver(validationSchema) as ReturnType<
-      typeof yupResolver<CreateIngredientFormData>
-    >,
+    resolver: yupResolver(validationSchema),
     defaultValues: {
       ingredientName: "",
-      ingredientAllergies: [] as string[],
+      ingredientAllergies: [],
       ingredientImageUrl: undefined,
       subIngredients: [],
     },
   });
 
-  const { handleSubmit, setValue, reset } = methods;
+  const { handleSubmit, setValue, reset, setError } = methods;
 
   const onSubmit = handleSubmit(async (formData) => {
-    // We're already providing the allergies as an array of strings
     const apiData = {
       ingredientName: formData.ingredientName,
-      ingredientAllergies: formData.ingredientAllergies,
+      ingredientAllergies: formData.ingredientAllergies.map((a) => a.allergyId),
       ingredientImageUrl: formData.ingredientImageUrl,
       subIngredients: formData.subIngredients,
     };
@@ -102,10 +105,24 @@ const CreateIngredientForm: React.FC = () => {
             variant: "success",
           });
           reset();
+        } else {
+          enqueueSnackbar(t("common:alerts.error"), { variant: "error" });
         }
       },
-      onError: () => {
-        enqueueSnackbar(t("common:alerts.createError"), { variant: "error" });
+      onError: (error: ApiError) => {
+        if (error?.response?.data?.errors) {
+          Object.entries(error.response.data.errors).forEach(([key, value]) => {
+            setError(key as keyof CreateIngredientFormData, {
+              type: "manual",
+              message: value as string,
+            });
+          });
+          enqueueSnackbar(t("common:alerts.validationError"), {
+            variant: "error",
+          });
+        } else {
+          enqueueSnackbar(t("common:alerts.createError"), { variant: "error" });
+        }
       },
     });
   });
@@ -114,11 +131,9 @@ const CreateIngredientForm: React.FC = () => {
     setValue("ingredientImageUrl", url);
   };
 
-  // Map allergies to the correct structure for the select input
   const allergyOptions = allergies.map((allergy) => ({
-    _id: allergy._id,
-    allergyName: allergy.allergyName,
     allergyId: allergy.allergyId,
+    allergyName: allergy.allergyName,
   }));
 
   return (
@@ -145,18 +160,9 @@ const CreateIngredientForm: React.FC = () => {
               options={allergyOptions}
               keyValue="allergyId"
               renderOption={(option) => option.allergyName}
-              renderValue={(values) => {
-                // Convert stringId array to display names
-                return values
-                  .map((stringId) => {
-                    // Find the option with matching allergyId
-                    const found = allergyOptions.find(
-                      (a) => String(a.allergyId) === String(stringId)
-                    );
-                    return found ? found.allergyName : stringId;
-                  })
-                  .join(", ");
-              }}
+              renderValue={(values) =>
+                values.map((value) => value.allergyName).join(", ")
+              }
             />
           </Grid>
           <Grid size={{ xs: 12 }}>

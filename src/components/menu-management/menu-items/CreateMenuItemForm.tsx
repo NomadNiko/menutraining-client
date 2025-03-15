@@ -15,33 +15,36 @@ import ImageUpload from "../ImageUpload";
 import FormMultipleSelectInput from "@/components/form/multiple-select/form-multiple-select";
 import { Ingredient } from "@/types/ingredient";
 import removeDuplicatesFromArrayObjects from "@/services/helpers/remove-duplicates-from-array-objects";
+import { ApiError } from "@/services/api/types/api-error";
 
-// Create a type alias that matches the structure expected by the form
 type IngredientOption = {
   ingredientId: string;
   ingredientName: string;
-  _id: string;
 };
 
 type CreateMenuItemFormData = {
-  menuItemDescription?: string;
-  menuItemIngredients: string[]; // Store just the ingredientId strings
+  menuItemDescription: string;
+  menuItemIngredients: IngredientOption[];
   menuItemUrl?: string;
 };
 
 const useValidationSchema = () => {
   const { t } = useTranslation("common");
   return yup.object().shape({
-    menuItemDescription: yup.string(),
+    menuItemDescription: yup.string().required(t("common:validation.required")),
     menuItemIngredients: yup
       .array()
-      .of(yup.string().defined())
+      .of(
+        yup.object().shape({
+          ingredientId: yup.string().required(),
+          ingredientName: yup.string().required(),
+        })
+      )
       .min(1, t("common:validation.minOneIngredient"))
-      .default([]), // ensure no undefined values
+      .default([]),
   });
 };
 
-// Create a separate component for form actions to use useFormState
 function FormActions() {
   const { t } = useTranslation("common");
   const { isSubmitting } = useFormState();
@@ -76,23 +79,22 @@ const CreateMenuItemForm: React.FC = () => {
 
   const validationSchema = useValidationSchema();
   const methods = useForm<CreateMenuItemFormData>({
-    resolver: yupResolver(validationSchema) as ReturnType<
-      typeof yupResolver<CreateMenuItemFormData>
-    >,
+    resolver: yupResolver(validationSchema),
     defaultValues: {
       menuItemDescription: "",
-      menuItemIngredients: [] as string[],
+      menuItemIngredients: [],
       menuItemUrl: undefined,
     },
   });
 
-  const { handleSubmit, setValue, reset } = methods;
+  const { handleSubmit, setValue, reset, setError } = methods;
 
   const onSubmit = handleSubmit(async (formData) => {
-    // We're already providing the ingredients as an array of strings
     const apiData = {
       menuItemDescription: formData.menuItemDescription,
-      menuItemIngredients: formData.menuItemIngredients,
+      menuItemIngredients: formData.menuItemIngredients.map(
+        (i) => i.ingredientId
+      ),
       menuItemUrl: formData.menuItemUrl,
     };
 
@@ -103,10 +105,24 @@ const CreateMenuItemForm: React.FC = () => {
             variant: "success",
           });
           reset();
+        } else {
+          enqueueSnackbar(t("common:alerts.error"), { variant: "error" });
         }
       },
-      onError: () => {
-        enqueueSnackbar(t("common:alerts.createError"), { variant: "error" });
+      onError: (error: ApiError) => {
+        if (error?.response?.data?.errors) {
+          Object.entries(error.response.data.errors).forEach(([key, value]) => {
+            setError(key as keyof CreateMenuItemFormData, {
+              type: "manual",
+              message: value as string,
+            });
+          });
+          enqueueSnackbar(t("common:alerts.validationError"), {
+            variant: "error",
+          });
+        } else {
+          enqueueSnackbar(t("common:alerts.createError"), { variant: "error" });
+        }
       },
     });
   });
@@ -115,11 +131,9 @@ const CreateMenuItemForm: React.FC = () => {
     setValue("menuItemUrl", url);
   };
 
-  // Map ingredients to the correct structure for the select input
   const ingredientOptions = ingredients.map((ingredient) => ({
-    _id: ingredient._id,
-    ingredientName: ingredient.ingredientName,
     ingredientId: ingredient.ingredientId,
+    ingredientName: ingredient.ingredientName,
   }));
 
   return (
@@ -134,10 +148,8 @@ const CreateMenuItemForm: React.FC = () => {
           <Grid size={{ xs: 12 }}>
             <FormTextInput<CreateMenuItemFormData>
               name="menuItemDescription"
-              label={t("common:menuItemForm.description")}
+              label={t("common:menuItemForm.name")}
               testId="menu-item-description"
-              multiline
-              minRows={3}
             />
           </Grid>
           <Grid size={{ xs: 12 }}>
@@ -148,18 +160,9 @@ const CreateMenuItemForm: React.FC = () => {
               options={ingredientOptions}
               keyValue="ingredientId"
               renderOption={(option) => option.ingredientName}
-              renderValue={(values) => {
-                // Convert stringId array to display names
-                return values
-                  .map((stringId) => {
-                    // Find the option with matching ingredientId
-                    const found = ingredientOptions.find(
-                      (i) => String(i.ingredientId) === String(stringId)
-                    );
-                    return found ? found.ingredientName : stringId;
-                  })
-                  .join(", ");
-              }}
+              renderValue={(values) =>
+                values.map((value) => value.ingredientName).join(", ")
+              }
             />
             {methods.formState.errors.menuItemIngredients && (
               <Typography color="error" variant="caption">

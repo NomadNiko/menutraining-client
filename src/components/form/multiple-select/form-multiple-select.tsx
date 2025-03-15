@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
 import OutlinedInput from "@mui/material/OutlinedInput";
 
-type MultipleSelectInputProps<T extends object> = {
+type MultipleSelectInputProps<T> = {
   label: string;
   type?: string;
   autoFocus?: boolean;
@@ -28,7 +28,7 @@ type MultipleSelectInputProps<T extends object> = {
   renderOption: (option: T) => React.ReactNode;
 };
 
-function MultipleSelectInputRaw<T extends object>(
+function MultipleSelectInputRaw<T>(
   props: MultipleSelectInputProps<T> & {
     name: string;
     value: T[] | undefined | null;
@@ -56,20 +56,16 @@ function MultipleSelectInputRaw<T extends object>(
           const value = event.target.value;
           const selectedStrings =
             typeof value === "string" ? value.split(",") : value;
-
           const newValue = selectedStrings
             .map((selectedString) => {
               const option = props.options.find(
                 (option) =>
                   option[props.keyValue]?.toString() === selectedString
               );
-
               if (!option) return undefined;
-
               return option;
             })
             .filter((option) => option !== undefined) as T[];
-
           props.onChange(newValue);
         }}
         onBlur={props.onBlur}
@@ -96,13 +92,11 @@ function MultipleSelectInputRaw<T extends object>(
   );
 }
 
-const MultipleSelectInput = forwardRef(MultipleSelectInputRaw) as never as <
-  T extends object,
->(
+const MultipleSelectInput = forwardRef(MultipleSelectInputRaw) as never as <T>(
   props: MultipleSelectInputProps<T> & {
     name: string;
-    value: T | undefined | null;
-    onChange: (value: T) => void;
+    value: T[] | undefined | null;
+    onChange: (value: T[]) => void;
     onBlur: () => void;
   } & { ref?: ForwardedRef<HTMLDivElement | null> }
 ) => ReturnType<typeof MultipleSelectInputRaw>;
