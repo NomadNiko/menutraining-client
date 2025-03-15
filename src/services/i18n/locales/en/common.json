@@ -1,5 +1,5 @@
 {
-  "app-name": "NomadNiko's Boilerplate",
+  "app-name": "Menteo",
   "loading": "Loading ...",
   "navigation": {
     "home": "Home",
@@ -35,6 +35,56 @@
   "auth": {
     "facebook": {
       "action": "Login with Facebook"
+    }
+  },
+  "validation": {
+    "required": "This field is required",
+    "minOneIngredient": "At least one ingredient is required"
+  },
+  "alerts": {
+    "createSuccess": "Successfully created",
+    "createError": "Failed to create. Please try again",
+    "updateSuccess": "Successfully updated",
+    "updateError": "Failed to update. Please try again",
+    "deleteSuccess": "Successfully deleted",
+    "deleteError": "Failed to delete. Please try again"
+  },
+  "actions": {
+    "create": "Create",
+    "creating": "Creating...",
+    "update": "Update",
+    "updating": "Updating...",
+    "delete": "Delete",
+    "deleting": "Deleting...",
+    "cancel": "Cancel"
+  },
+  "allergyForm": {
+    "title": "Add New Allergy",
+    "name": "Allergy Name",
+    "uploadLogo": "Upload Logo"
+  },
+  "ingredientForm": {
+    "title": "Add New Ingredient",
+    "name": "Ingredient Name",
+    "allergies": "Associated Allergies",
+    "uploadImage": "Upload Image"
+  },
+  "menuItemForm": {
+    "title": "Add New Menu Item",
+    "description": "Description",
+    "ingredients": "Ingredients",
+    "uploadImage": "Upload Image"
+  },
+  "menuManagement": {
+    "pageTitle": "Menu Management",
+    "title": "Menu Management",
+    "createAllergy": "Create New Allergy",
+    "createIngredient": "Create New Ingredient",
+    "createMenuItem": "Create New Menu Item",
+    "tabs": {
+      "allergies": "Allergies",
+      "ingredients": "Ingredients",
+      "menuItems": "Menu Items"
     }
   }
 }
