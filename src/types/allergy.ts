@@ -5,6 +5,7 @@ export type Allergy = {
   allergyLogoUrl?: string;
   createdAt: string;
   updatedAt: string;
+  id: string;
 };
 
 export type CreateAllergyDto = {

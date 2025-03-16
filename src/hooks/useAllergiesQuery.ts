@@ -100,7 +100,6 @@ export const useUpdateAllergyMutation = () => {
 export const useDeleteAllergyMutation = () => {
   const queryClient = useQueryClient();
   const deleteAllergy = useDeleteAllergyService();
-
   return useMutation({
     mutationFn: (id: string) => deleteAllergy({ id }),
     onSuccess: () => {

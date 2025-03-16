@@ -23,6 +23,7 @@ type IngredientOption = {
 };
 
 type CreateMenuItemFormData = {
+  menuItemName: string;
   menuItemDescription: string;
   menuItemIngredients: IngredientOption[];
   menuItemUrl?: string;
@@ -31,6 +32,7 @@ type CreateMenuItemFormData = {
 const useValidationSchema = () => {
   const { t } = useTranslation("common");
   return yup.object().shape({
+    menuItemName: yup.string().required(t("common:validation.required")),
     menuItemDescription: yup.string().required(t("common:validation.required")),
     menuItemIngredients: yup
       .array()
@@ -81,6 +83,7 @@ const CreateMenuItemForm: React.FC = () => {
   const methods = useForm<CreateMenuItemFormData>({
     resolver: yupResolver(validationSchema),
     defaultValues: {
+      menuItemName: "",
       menuItemDescription: "",
       menuItemIngredients: [],
       menuItemUrl: undefined,
@@ -92,6 +95,7 @@ const CreateMenuItemForm: React.FC = () => {
   const onSubmit = handleSubmit(async (formData) => {
     const apiData = {
       menuItemDescription: formData.menuItemDescription,
+      menuItemName: formData.menuItemName,
       menuItemIngredients: formData.menuItemIngredients.map(
         (i) => i.ingredientId
       ),
@@ -147,8 +151,15 @@ const CreateMenuItemForm: React.FC = () => {
           </Grid>
           <Grid size={{ xs: 12 }}>
             <FormTextInput<CreateMenuItemFormData>
-              name="menuItemDescription"
+              name="menuItemName"
               label={t("common:menuItemForm.name")}
+              testId="menu-item-name"
+            />
+          </Grid>
+          <Grid size={{ xs: 12 }}>
+            <FormTextInput<CreateMenuItemFormData>
+              name="menuItemDescription"
+              label={t("common:menuItemForm.description")}
               testId="menu-item-description"
             />
           </Grid>

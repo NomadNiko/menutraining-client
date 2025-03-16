@@ -7,6 +7,7 @@ export type Ingredient = {
   subIngredients?: string[];
   createdAt: string;
   updatedAt: string;
+  id: string;
 };
 
 export type CreateIngredientDto = {

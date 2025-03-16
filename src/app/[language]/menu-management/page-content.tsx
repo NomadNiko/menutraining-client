@@ -12,11 +12,14 @@ import Tab from "@mui/material/Tab";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
-
 import TabPanel from "@/components/menu-management/TabPanel";
 import CreateAllergyForm from "@/components/menu-management/allergies/CreateAllergyForm";
 import CreateIngredientForm from "@/components/menu-management/ingredients/CreateIngredientForm";
 import CreateMenuItemForm from "@/components/menu-management/menu-items/CreateMenuItemForm";
+import IngredientsList from "@/components/menu-management/ingredients/IngredientsList";
+import AllergiesList from "@/components/menu-management/allergies/AllergiesList";
+import MenuItemsList from "@/components/menu-management/menu-items/MenuItemsList";
+import Divider from "@mui/material/Divider";
 
 function a11yProps(index: number) {
   return {
@@ -41,7 +44,6 @@ function MenuManagement() {
             {t("common:menuManagement.title")}
           </Typography>
         </Grid>
-
         <Grid size={{ xs: 12 }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <Tabs
@@ -65,7 +67,6 @@ function MenuManagement() {
             </Tabs>
           </Box>
         </Grid>
-
         <Grid size={{ xs: 12 }}>
           <TabPanel value={tabValue} index={0}>
             <Card>
@@ -74,17 +75,26 @@ function MenuManagement() {
                 <CreateAllergyForm />
               </CardContent>
             </Card>
-          </TabPanel>
 
+            <Divider sx={{ my: 4 }} />
+
+            {/* Allergies List */}
+            <AllergiesList />
+          </TabPanel>
           <TabPanel value={tabValue} index={1}>
+            {/* Ingredients Tab Content */}
             <Card>
               <CardHeader title={t("common:menuManagement.createIngredient")} />
               <CardContent>
                 <CreateIngredientForm />
               </CardContent>
             </Card>
-          </TabPanel>
 
+            <Divider sx={{ my: 4 }} />
+
+            {/* Ingredients List */}
+            <IngredientsList />
+          </TabPanel>
           <TabPanel value={tabValue} index={2}>
             <Card>
               <CardHeader title={t("common:menuManagement.createMenuItem")} />
@@ -92,6 +102,11 @@ function MenuManagement() {
                 <CreateMenuItemForm />
               </CardContent>
             </Card>
+
+            <Divider sx={{ my: 4 }} />
+
+            {/* Menu Items List */}
+            <MenuItemsList />
           </TabPanel>
         </Grid>
       </Grid>

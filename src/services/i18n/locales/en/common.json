@@ -1,63 +1,32 @@
 {
-  "app-name": "Menteo",
-  "loading": "Loading ...",
   "navigation": {
     "home": "Home",
-    "signIn": "Sign In",
-    "menuManagement": "Menu Admin",
-    "signUp": "Sign Up",
-    "profile": "Profile",
     "users": "Users",
-    "logout": "Logout"
+    "profile": "Profile",
+    "logout": "Logout",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "menuManagement": "Menu Management"
   },
-  "formInputs": {
-    "avatarInput": {
-      "dropzoneText": "Drop the image here ...",
-      "dragAndDrop": "Or drag 'n' drop some image here",
-      "selectFile": "Select an image"
-    },
-    "multipleImageInput": {
-      "dropzoneText": "Drop the image here ...",
-      "dragAndDrop": "Or drag 'n' drop some images here",
-      "selectFile": "Select an image"
-    },
-    "singleImageInput": {
-      "dropzoneText": "Drop the image here ...",
-      "dragAndDrop": "Or drag 'n' drop some images here",
-      "selectFile": "Select an image"
-    }
-  },
+  "app-name": "Menteo",
+  "loading": "Loading...",
   "leavePage": {
-    "title": "Leave this page?",
-    "message": "Changes you made may not be saved",
-    "stay": "Stay on Page",
-    "leave": "Leave Page"
+    "title": "Are you sure you want to leave?",
+    "message": "You have unsaved changes. Are you sure you want to leave?",
+    "stay": "Stay",
+    "leave": "Leave"
   },
-  "auth": {
-    "facebook": {
-      "action": "Login with Facebook"
+  "menuManagement": {
+    "title": "Menu Management",
+    "pageTitle": "Menu Management System",
+    "createAllergy": "Create New Allergy",
+    "createIngredient": "Create New Ingredient",
+    "createMenuItem": "Create New Menu Item",
+    "tabs": {
+      "allergies": "Allergies",
+      "ingredients": "Ingredients",
+      "menuItems": "Menu Items"
     }
-  },
-  "validation": {
-    "required": "This field is required",
-    "minOneIngredient": "At least one ingredient is required"
-  },
-  "alerts": {
-    "createSuccess": "Successfully created",
-    "createError": "Failed to create. Please try again",
-    "updateSuccess": "Successfully updated",
-    "updateError": "Failed to update. Please try again",
-    "deleteSuccess": "Successfully deleted",
-    "deleteError": "Failed to delete. Please try again"
-  },
-  "actions": {
-    "create": "Create",
-    "creating": "Creating...",
-    "update": "Update",
-    "updating": "Updating...",
-    "delete": "Delete",
-    "deleting": "Deleting...",
-    "cancel": "Cancel"
   },
   "allergyForm": {
     "title": "Add New Allergy",
@@ -67,25 +36,102 @@
   "ingredientForm": {
     "title": "Add New Ingredient",
     "name": "Ingredient Name",
-    "allergies": "Associated Allergies",
+    "allergies": "Allergies",
+    "subIngredients": "Sub-Ingredients",
     "uploadImage": "Upload Image"
   },
   "menuItemForm": {
     "title": "Add New Menu Item",
-    "description": "Description",
+    "name": "Menu Item Description",
     "ingredients": "Ingredients",
     "uploadImage": "Upload Image"
   },
-  "menuManagement": {
-    "pageTitle": "Menu Management",
-    "title": "Menu Management",
-    "createAllergy": "Create New Allergy",
-    "createIngredient": "Create New Ingredient",
-    "createMenuItem": "Create New Menu Item",
-    "tabs": {
-      "allergies": "Allergies",
-      "ingredients": "Ingredients",
-      "menuItems": "Menu Items"
+  "actions": {
+    "create": "Create",
+    "creating": "Creating...",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "loadMore": "Load More",
+    "loading": "Loading..."
+  },
+  "alerts": {
+    "createSuccess": "Created successfully",
+    "createError": "Error creating item",
+    "deleteSuccess": "Deleted successfully",
+    "deleteError": "Error deleting item",
+    "error": "An error occurred",
+    "validationError": "Please correct the errors in the form"
+  },
+  "validation": {
+    "required": "This field is required",
+    "minOneIngredient": "At least one ingredient is required"
+  },
+  "confirm": {
+    "delete": {
+      "title": "Confirm Deletion"
+    },
+    "deleteIngredient": {
+      "message": "Are you sure you want to delete the ingredient '{{name}}'?"
+    },
+    "deleteAllergy": {
+      "message": "Are you sure you want to delete the allergy '{{name}}'?"
+    },
+    "deleteMenuItem": {
+      "message": "Are you sure you want to delete the menu item '{{name}}'?"
+    }
+  },
+  "allergiesList": {
+    "title": "Allergies List",
+    "id": "ID",
+    "logo": "Logo",
+    "name": "Allergy Name",
+    "actions": "Actions"
+  },
+  "ingredientsList": {
+    "title": "Ingredients List",
+    "id": "ID",
+    "name": "Name",
+    "allergies": "Allergies",
+    "subIngredients": "Sub-Ingredients",
+    "actions": "Actions",
+    "none": "None"
+  },
+  "menuItemsList": {
+    "title": "Menu Items List",
+    "id": "ID",
+    "image": "Image",
+    "description": "Description",
+    "ingredients": "Ingredients",
+    "actions": "Actions",
+    "noImage": "No image",
+    "noDescription": "No description",
+    "unnamedItem": "Unnamed Item"
+  },
+  "noIngredientsTitle": "No ingredients found",
+  "noIngredientsMessage": "There are no ingredients in the system yet. Create one using the form above.",
+  "noAllergiesTitle": "No allergies found",
+  "noAllergiesMessage": "There are no allergies in the system yet. Create one using the form above.",
+  "noMenuItemsTitle": "No menu items found",
+  "noMenuItemsMessage": "There are no menu items in the system yet. Create one using the form above.",
+  "formInputs": {
+    "avatarInput": {
+      "dropzoneText": "Drop image here",
+      "selectFile": "Select Image",
+      "dragAndDrop": "or drag and drop"
+    },
+    "singleImageInput": {
+      "dropzoneText": "Drop image here",
+      "selectFile": "Select Image",
+      "dragAndDrop": "or drag and drop",
+      "imageAlt": "Uploaded image"
+    },
+    "multipleImageInput": {
+      "dropzoneText": "Drop image here",
+      "selectFile": "Select Image",
+      "dragAndDrop": "or drag and drop",
+      "imageAlt": "Uploaded image"
     }
   }
 }

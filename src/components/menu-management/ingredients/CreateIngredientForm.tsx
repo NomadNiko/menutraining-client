@@ -6,7 +6,10 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid2";
 import Typography from "@mui/material/Typography";
 import FormTextInput from "@/components/form/text-input/form-text-input";
-import { useCreateIngredientMutation } from "@/hooks/useIngredientsQuery";
+import {
+  useCreateIngredientMutation,
+  useIngredientsQuery,
+} from "@/hooks/useIngredientsQuery";
 import { useAllergiesQuery } from "@/hooks/useAllergiesQuery";
 import { useSnackbar } from "@/hooks/use-snackbar";
 import HTTP_CODES_ENUM from "@/services/api/types/http-codes";
@@ -14,6 +17,7 @@ import { useTranslation } from "@/services/i18n/client";
 import ImageUpload from "../ImageUpload";
 import FormMultipleSelectInput from "@/components/form/multiple-select/form-multiple-select";
 import { Allergy } from "@/types/allergy";
+import { Ingredient } from "@/types/ingredient";
 import removeDuplicatesFromArrayObjects from "@/services/helpers/remove-duplicates-from-array-objects";
 import { ApiError } from "@/services/api/types/api-error";
 
@@ -22,11 +26,16 @@ type AllergyOption = {
   allergyName: string;
 };
 
+type IngredientOption = {
+  ingredientId: string;
+  ingredientName: string;
+};
+
 type CreateIngredientFormData = {
   ingredientName: string;
   ingredientAllergies: AllergyOption[];
   ingredientImageUrl?: string;
-  subIngredients?: string[];
+  subIngredients: IngredientOption[];
 };
 
 const useValidationSchema = () => {
@@ -39,6 +48,15 @@ const useValidationSchema = () => {
         yup.object().shape({
           allergyId: yup.string().required(),
           allergyName: yup.string().required(),
+        })
+      )
+      .default([]),
+    subIngredients: yup
+      .array()
+      .of(
+        yup.object().shape({
+          ingredientId: yup.string().required(),
+          ingredientName: yup.string().required(),
         })
       )
       .default([]),
@@ -66,7 +84,9 @@ const CreateIngredientForm: React.FC = () => {
   const { enqueueSnackbar } = useSnackbar();
   const createIngredientMutation = useCreateIngredientMutation();
   const allergiesQuery = useAllergiesQuery();
+  const ingredientsQuery = useIngredientsQuery();
   const [allergies, setAllergies] = useState<Allergy[]>([]);
+  const [ingredients, setIngredients] = useState<Ingredient[]>([]);
 
   useEffect(() => {
     if (allergiesQuery.data) {
@@ -76,6 +96,15 @@ const CreateIngredientForm: React.FC = () => {
       setAllergies(removeDuplicatesFromArrayObjects(allAllergies, "_id"));
     }
   }, [allergiesQuery.data]);
+
+  useEffect(() => {
+    if (ingredientsQuery.data) {
+      const allIngredients = ingredientsQuery.data.pages.flatMap(
+        (page) => page.data
+      );
+      setIngredients(removeDuplicatesFromArrayObjects(allIngredients, "_id"));
+    }
+  }, [ingredientsQuery.data]);
 
   const validationSchema = useValidationSchema();
   const methods = useForm<CreateIngredientFormData>({
@@ -95,7 +124,7 @@ const CreateIngredientForm: React.FC = () => {
       ingredientName: formData.ingredientName,
       ingredientAllergies: formData.ingredientAllergies.map((a) => a.allergyId),
       ingredientImageUrl: formData.ingredientImageUrl,
-      subIngredients: formData.subIngredients,
+      subIngredients: formData.subIngredients.map((i) => i.ingredientId),
     };
 
     createIngredientMutation.mutate(apiData, {
@@ -136,6 +165,11 @@ const CreateIngredientForm: React.FC = () => {
     allergyName: allergy.allergyName,
   }));
 
+  const ingredientOptions = ingredients.map((ingredient) => ({
+    ingredientId: ingredient.ingredientId,
+    ingredientName: ingredient.ingredientName,
+  }));
+
   return (
     <FormProvider {...methods}>
       <form onSubmit={onSubmit}>
@@ -162,6 +196,19 @@ const CreateIngredientForm: React.FC = () => {
               renderOption={(option) => option.allergyName}
               renderValue={(values) =>
                 values.map((value) => value.allergyName).join(", ")
+              }
+            />
+          </Grid>
+          <Grid size={{ xs: 12 }}>
+            <FormMultipleSelectInput<CreateIngredientFormData, IngredientOption>
+              name="subIngredients"
+              testId="ingredient-sub-ingredients"
+              label={t("common:ingredientForm.subIngredients")}
+              options={ingredientOptions}
+              keyValue="ingredientId"
+              renderOption={(option) => option.ingredientName}
+              renderValue={(values) =>
+                values.map((value) => value.ingredientName).join(", ")
               }
             />
           </Grid>
