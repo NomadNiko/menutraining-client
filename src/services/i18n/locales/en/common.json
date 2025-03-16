@@ -87,7 +87,7 @@
     "title": "Allergies List",
     "id": "ID",
     "logo": "Logo",
-    "name": "Allergy Name",
+    "name": "Name",
     "actions": "Actions"
   },
   "ingredientsList": {
@@ -97,7 +97,8 @@
     "allergies": "Allergies",
     "subIngredients": "Sub-Ingredients",
     "actions": "Actions",
-    "none": "None"
+    "none": "None",
+    "image": "Image"
   },
   "menuItemsList": {
     "title": "Menu Items List",

@@ -20,6 +20,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
 import { useTranslation } from "@/services/i18n/client";
 import { useSnackbar } from "@/hooks/use-snackbar";
 import useConfirmDialog from "@/components/confirm-dialog/use-confirm-dialog";
@@ -93,7 +95,6 @@ const IngredientsList: React.FC = () => {
       successButtonText: t("common:actions.delete"),
       cancelButtonText: t("common:actions.cancel"),
     });
-
     if (isConfirmed) {
       // Use the string id field instead of _id
       deleteIngredientMutation.mutate(ingredient.id, {
@@ -169,12 +170,17 @@ const IngredientsList: React.FC = () => {
         <Table sx={{ minWidth: 650 }} aria-label="ingredients table">
           <TableHead>
             <TableRow>
-              <TableCell>{t("common:ingredientsList.id")}</TableCell>
-              <TableCell>{t("common:ingredientsList.name")}</TableCell>
+              <TableCell width={80}>
+                {t("common:ingredientsList.image")}
+              </TableCell>
+              <TableCell width={180} sx={{ wordWrap: "break-word" }}>
+                {t("common:ingredientsList.name")}
+              </TableCell>
               <TableCell>{t("common:ingredientsList.allergies")}</TableCell>
               <TableCell>
                 {t("common:ingredientsList.subIngredients")}
               </TableCell>
+              <TableCell>{t("common:ingredientsList.id")}</TableCell>
               <TableCell align="right">
                 {t("common:ingredientsList.actions")}
               </TableCell>
@@ -183,10 +189,38 @@ const IngredientsList: React.FC = () => {
           <TableBody>
             {ingredients.map((ingredient) => (
               <TableRow key={ingredient.id || ingredient.ingredientId}>
-                <TableCell component="th" scope="row">
-                  {ingredient.ingredientId}
+                <TableCell width={80}>
+                  {ingredient.ingredientImageUrl ? (
+                    <Card sx={{ width: 70, height: 70 }}>
+                      <CardMedia
+                        component="img"
+                        height="70"
+                        image={ingredient.ingredientImageUrl}
+                        alt={ingredient.ingredientName}
+                      />
+                    </Card>
+                  ) : (
+                    <Box
+                      sx={{
+                        width: 70,
+                        height: 70,
+                        bgcolor: "grey.200",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Typography variant="caption">
+                        {t("common:ingredientsList.noImage")}
+                      </Typography>
+                    </Box>
+                  )}
                 </TableCell>
-                <TableCell>{ingredient.ingredientName}</TableCell>
+                <TableCell width={120} sx={{ wordWrap: "break-word" }}>
+                  <Typography noWrap={false}>
+                    {ingredient.ingredientName}
+                  </Typography>
+                </TableCell>
                 <TableCell>
                   {renderAllergies(ingredient.ingredientAllergies)}
                 </TableCell>
@@ -196,6 +230,7 @@ const IngredientsList: React.FC = () => {
                     ? getIngredientNames(ingredient.subIngredients)
                     : t("common:ingredientsList.none")}
                 </TableCell>
+                <TableCell>{ingredient.ingredientId}</TableCell>
                 <TableCell align="right">
                   <IconButton aria-label="view" size="small" color="primary">
                     <VisibilityIcon />

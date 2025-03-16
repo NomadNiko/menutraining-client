@@ -17,7 +17,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
-import Avatar from "@mui/material/Avatar";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
 import { useTranslation } from "@/services/i18n/client";
 import { useSnackbar } from "@/hooks/use-snackbar";
 import useConfirmDialog from "@/components/confirm-dialog/use-confirm-dialog";
@@ -69,7 +70,6 @@ const AllergiesList: React.FC = () => {
       successButtonText: t("common:actions.delete"),
       cancelButtonText: t("common:actions.cancel"),
     });
-
     if (isConfirmed) {
       // Use the string id field instead of _id
       deleteAllergyMutation.mutate(allergy.id, {
@@ -114,9 +114,11 @@ const AllergiesList: React.FC = () => {
         <Table sx={{ minWidth: 650 }} aria-label="allergies table">
           <TableHead>
             <TableRow>
+              <TableCell width={80}>{t("common:allergiesList.logo")}</TableCell>
+              <TableCell width={180} sx={{ wordWrap: "break-word" }}>
+                {t("common:allergiesList.name")}
+              </TableCell>
               <TableCell>{t("common:allergiesList.id")}</TableCell>
-              <TableCell>{t("common:allergiesList.logo")}</TableCell>
-              <TableCell>{t("common:allergiesList.name")}</TableCell>
               <TableCell align="right">
                 {t("common:allergiesList.actions")}
               </TableCell>
@@ -125,21 +127,37 @@ const AllergiesList: React.FC = () => {
           <TableBody>
             {allergies.map((allergy) => (
               <TableRow key={allergy.id || allergy.allergyId}>
-                <TableCell>{allergy.allergyId}</TableCell>
-                <TableCell>
+                <TableCell width={80}>
                   {allergy.allergyLogoUrl ? (
-                    <Avatar
-                      src={allergy.allergyLogoUrl}
-                      alt={allergy.allergyName}
-                      sx={{ width: 40, height: 40 }}
-                    />
+                    <Card sx={{ width: 70, height: 70 }}>
+                      <CardMedia
+                        component="img"
+                        height="70"
+                        image={allergy.allergyLogoUrl}
+                        alt={allergy.allergyName}
+                      />
+                    </Card>
                   ) : (
-                    <Avatar sx={{ width: 40, height: 40 }}>
-                      {allergy.allergyName.charAt(0)}
-                    </Avatar>
+                    <Box
+                      sx={{
+                        width: 70,
+                        height: 70,
+                        bgcolor: "grey.200",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Typography variant="caption">
+                        {t("common:allergiesList.noImage")}
+                      </Typography>
+                    </Box>
                   )}
                 </TableCell>
-                <TableCell>{allergy.allergyName}</TableCell>
+                <TableCell width={120} sx={{ wordWrap: "break-word" }}>
+                  <Typography noWrap={false}>{allergy.allergyName}</Typography>
+                </TableCell>
+                <TableCell>{allergy.allergyId}</TableCell>
                 <TableCell align="right">
                   <IconButton aria-label="view" size="small" color="primary">
                     <VisibilityIcon />

@@ -97,7 +97,6 @@ const MenuItemsList: React.FC = () => {
       successButtonText: t("common:actions.delete"),
       cancelButtonText: t("common:actions.cancel"),
     });
-
     if (isConfirmed) {
       // Use the string id field instead of _id
       deleteMenuItemMutation.mutate(menuItem.id, {
@@ -161,11 +160,15 @@ const MenuItemsList: React.FC = () => {
         <Table sx={{ minWidth: 650 }} aria-label="menu items table">
           <TableHead>
             <TableRow>
-              <TableCell>{t("common:menuItemsList.id")}</TableCell>
-              <TableCell>{t("common:menuItemsList.name")}</TableCell>
-              <TableCell>{t("common:menuItemsList.image")}</TableCell>
+              <TableCell width={80}>
+                {t("common:menuItemsList.image")}
+              </TableCell>
+              <TableCell width={120} sx={{ wordWrap: "break-word" }}>
+                {t("common:menuItemsList.name")}
+              </TableCell>
               <TableCell>{t("common:menuItemsList.description")}</TableCell>
               <TableCell>{t("common:menuItemsList.ingredients")}</TableCell>
+              <TableCell>{t("common:menuItemsList.id")}</TableCell>
               <TableCell align="right">
                 {t("common:menuItemsList.actions")}
               </TableCell>
@@ -174,14 +177,12 @@ const MenuItemsList: React.FC = () => {
           <TableBody>
             {menuItems.map((menuItem) => (
               <TableRow key={menuItem.id || menuItem.menuItemId}>
-                <TableCell>{menuItem.menuItemId}</TableCell>
-                <TableCell>{menuItem.menuItemName}</TableCell>
-                <TableCell>
+                <TableCell width={80}>
                   {menuItem.menuItemUrl ? (
-                    <Card sx={{ maxWidth: 100 }}>
+                    <Card sx={{ width: 70, height: 70 }}>
                       <CardMedia
                         component="img"
-                        height="60"
+                        height="70"
                         image={menuItem.menuItemUrl}
                         alt={menuItem.menuItemDescription || "Menu item"}
                       />
@@ -189,8 +190,8 @@ const MenuItemsList: React.FC = () => {
                   ) : (
                     <Box
                       sx={{
-                        width: 60,
-                        height: 60,
+                        width: 70,
+                        height: 70,
                         bgcolor: "grey.200",
                         display: "flex",
                         alignItems: "center",
@@ -203,6 +204,11 @@ const MenuItemsList: React.FC = () => {
                     </Box>
                   )}
                 </TableCell>
+                <TableCell width={180} sx={{ wordWrap: "break-word" }}>
+                  <Typography noWrap={false}>
+                    {menuItem.menuItemName}
+                  </Typography>
+                </TableCell>
                 <TableCell>
                   {menuItem.menuItemDescription ||
                     t("common:menuItemsList.noDescription")}
@@ -210,6 +216,7 @@ const MenuItemsList: React.FC = () => {
                 <TableCell>
                   {renderIngredients(menuItem.menuItemIngredients)}
                 </TableCell>
+                <TableCell>{menuItem.menuItemId}</TableCell>
                 <TableCell align="right">
                   <IconButton aria-label="view" size="small" color="primary">
                     <VisibilityIcon />
