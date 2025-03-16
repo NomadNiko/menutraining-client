@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useForm, FormProvider, useFormState } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -69,6 +69,8 @@ const CreateMenuItemForm: React.FC = () => {
   const createMenuItemMutation = useCreateMenuItemMutation();
   const ingredientsQuery = useIngredientsQuery();
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
+  // Reference to the ImageUpload component
+  const imageUploadRef = useRef<{ resetImage: () => void } | null>(null);
 
   useEffect(() => {
     if (ingredientsQuery.data) {
@@ -101,14 +103,20 @@ const CreateMenuItemForm: React.FC = () => {
       ),
       menuItemUrl: formData.menuItemUrl,
     };
-
     createMenuItemMutation.mutate(apiData, {
       onSuccess: (response) => {
         if (response.status === HTTP_CODES_ENUM.CREATED) {
           enqueueSnackbar(t("common:alerts.createSuccess"), {
             variant: "success",
           });
+          // Clear the form data
           reset();
+          // Reset the image upload component
+          if (imageUploadRef.current) {
+            imageUploadRef.current.resetImage();
+          }
+          // Explicitly clear the image URL
+          setValue("menuItemUrl", undefined);
         } else {
           enqueueSnackbar(t("common:alerts.error"), { variant: "error" });
         }
@@ -183,6 +191,7 @@ const CreateMenuItemForm: React.FC = () => {
           </Grid>
           <Grid size={{ xs: 12 }}>
             <ImageUpload
+              ref={imageUploadRef}
               label={t("common:menuItemForm.uploadImage")}
               onImageUrlChange={handleImageChange}
               testId="menu-item-image-upload"

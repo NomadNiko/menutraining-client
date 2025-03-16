@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useForm, FormProvider, useFormState } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -87,6 +87,8 @@ const CreateIngredientForm: React.FC = () => {
   const ingredientsQuery = useIngredientsQuery();
   const [allergies, setAllergies] = useState<Allergy[]>([]);
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
+  // Reference to the ImageUpload component
+  const imageUploadRef = useRef<{ resetImage: () => void } | null>(null);
 
   useEffect(() => {
     if (allergiesQuery.data) {
@@ -126,14 +128,20 @@ const CreateIngredientForm: React.FC = () => {
       ingredientImageUrl: formData.ingredientImageUrl,
       subIngredients: formData.subIngredients.map((i) => i.ingredientId),
     };
-
     createIngredientMutation.mutate(apiData, {
       onSuccess: (response) => {
         if (response.status === HTTP_CODES_ENUM.CREATED) {
           enqueueSnackbar(t("common:alerts.createSuccess"), {
             variant: "success",
           });
+          // Clear the form data
           reset();
+          // Reset the image upload component
+          if (imageUploadRef.current) {
+            imageUploadRef.current.resetImage();
+          }
+          // Explicitly clear the image URL
+          setValue("ingredientImageUrl", undefined);
         } else {
           enqueueSnackbar(t("common:alerts.error"), { variant: "error" });
         }
@@ -214,6 +222,7 @@ const CreateIngredientForm: React.FC = () => {
           </Grid>
           <Grid size={{ xs: 12 }}>
             <ImageUpload
+              ref={imageUploadRef}
               label={t("common:ingredientForm.uploadImage")}
               onImageUrlChange={handleImageChange}
               testId="ingredient-image-upload"

@@ -1,4 +1,9 @@
-import React, { useCallback, useState } from "react";
+import React, {
+  useCallback,
+  useState,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 import { useFileUploadService } from "@/services/api/services/files";
 import HTTP_CODES_ENUM from "@/services/api/types/http-codes";
 import Box from "@mui/material/Box";
@@ -38,87 +43,95 @@ const ImagePreview = styled("img")(({ theme }) => ({
   borderRadius: theme.spacing(0.5),
 }));
 
-const ImageUpload: React.FC<ImageUploadProps> = ({
-  onImageUrlChange,
-  label,
-  testId,
-  error,
-  initialImageUrl,
-}) => {
-  const theme = useTheme();
-  const [imageUrl, setImageUrl] = useState<string | undefined>(initialImageUrl);
-  const [isLoading, setIsLoading] = useState(false);
-  const fileUploadService = useFileUploadService();
+const ImageUpload = forwardRef<{ resetImage: () => void }, ImageUploadProps>(
+  ({ onImageUrlChange, label, testId, error, initialImageUrl }, ref) => {
+    const theme = useTheme();
+    const [imageUrl, setImageUrl] = useState<string | undefined>(
+      initialImageUrl
+    );
+    const [isLoading, setIsLoading] = useState(false);
+    const fileUploadService = useFileUploadService();
 
-  const onDrop = useCallback(
-    async (acceptedFiles: File[]) => {
-      if (isLoading || acceptedFiles.length === 0) return;
-      setIsLoading(true);
-      try {
-        const { status, data } = await fileUploadService(acceptedFiles[0]);
-        if (status === HTTP_CODES_ENUM.CREATED) {
-          const fullUrl = data.file.path;
-          setImageUrl(fullUrl);
-          onImageUrlChange(fullUrl);
+    // Expose the resetImage method to parent components
+    useImperativeHandle(ref, () => ({
+      resetImage: () => {
+        setImageUrl(undefined);
+      },
+    }));
+
+    const onDrop = useCallback(
+      async (acceptedFiles: File[]) => {
+        if (isLoading || acceptedFiles.length === 0) return;
+        setIsLoading(true);
+        try {
+          const { status, data } = await fileUploadService(acceptedFiles[0]);
+          if (status === HTTP_CODES_ENUM.CREATED) {
+            const fullUrl = data.file.path;
+            setImageUrl(fullUrl);
+            onImageUrlChange(fullUrl);
+          }
+        } catch (error) {
+          console.error("Image upload failed:", error);
+        } finally {
+          setIsLoading(false);
         }
-      } catch (error) {
-        console.error("Image upload failed:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [fileUploadService, isLoading, onImageUrlChange]
-  );
+      },
+      [fileUploadService, isLoading, onImageUrlChange]
+    );
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accept: {
-      "image/*": [],
-    },
-    maxFiles: 1,
-    disabled: isLoading,
-  });
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+      onDrop,
+      accept: {
+        "image/*": [],
+      },
+      maxFiles: 1,
+      disabled: isLoading,
+    });
 
-  return (
-    <ImageUploadContainer {...getRootProps()} data-testid={testId}>
-      <input {...getInputProps()} />
-      {isDragActive && (
-        <Box
-          sx={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            zIndex: 1,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Typography
+    return (
+      <ImageUploadContainer {...getRootProps()} data-testid={testId}>
+        <input {...getInputProps()} />
+        {isDragActive && (
+          <Box
             sx={{
-              color: "white",
-              fontWeight: "bold",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              bottom: 0,
+              right: 0,
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              zIndex: 1,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
-            variant="h6"
           >
-            Drop the image here
+            <Typography
+              sx={{
+                color: "white",
+                fontWeight: "bold",
+              }}
+              variant="h6"
+            >
+              Drop the image here
+            </Typography>
+          </Box>
+        )}
+        {imageUrl && <ImagePreview src={imageUrl} alt="Preview" />}
+        <Button variant="contained" disabled={isLoading}>
+          {isLoading ? "Uploading..." : label}
+        </Button>
+        {error && (
+          <Typography color="error" sx={{ mt: theme.spacing(1) }}>
+            {error}
           </Typography>
-        </Box>
-      )}
-      {imageUrl && <ImagePreview src={imageUrl} alt="Preview" />}
-      <Button variant="contained" disabled={isLoading}>
-        {isLoading ? "Uploading..." : label}
-      </Button>
-      {error && (
-        <Typography color="error" sx={{ mt: theme.spacing(1) }}>
-          {error}
-        </Typography>
-      )}
-    </ImageUploadContainer>
-  );
-};
+        )}
+      </ImageUploadContainer>
+    );
+  }
+);
+
+// Add display name for easier debugging
+ImageUpload.displayName = "ImageUpload";
 
 export default ImageUpload;

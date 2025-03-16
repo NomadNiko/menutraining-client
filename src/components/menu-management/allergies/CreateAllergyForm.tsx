@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useForm, FormProvider, useFormState } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -46,6 +46,8 @@ const CreateAllergyForm: React.FC = () => {
   const { enqueueSnackbar } = useSnackbar();
   const createAllergyMutation = useCreateAllergyMutation();
   const validationSchema = useValidationSchema();
+  // Reference to the ImageUpload component
+  const imageUploadRef = useRef<{ resetImage: () => void } | null>(null);
 
   const methods = useForm<CreateAllergyFormData>({
     resolver: yupResolver(validationSchema),
@@ -64,7 +66,14 @@ const CreateAllergyForm: React.FC = () => {
           enqueueSnackbar(t("common:alerts.createSuccess"), {
             variant: "success",
           });
+          // Clear the form data
           reset();
+          // Reset the image upload component
+          if (imageUploadRef.current) {
+            imageUploadRef.current.resetImage();
+          }
+          // Explicitly clear the image URL
+          setValue("allergyLogoUrl", undefined);
         }
       },
       onError: () => {
@@ -95,6 +104,7 @@ const CreateAllergyForm: React.FC = () => {
           </Grid>
           <Grid size={{ xs: 12 }}>
             <ImageUpload
+              ref={imageUploadRef}
               label={t("common:allergyForm.uploadLogo")}
               onImageUrlChange={handleImageChange}
               testId="allergy-logo-upload"
