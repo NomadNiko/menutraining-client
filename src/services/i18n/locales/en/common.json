@@ -42,7 +42,8 @@
   },
   "menuItemForm": {
     "title": "Add New Menu Item",
-    "name": "Menu Item Description",
+    "name": "Menu Item Name",
+    "description": "Menu Item Description",
     "ingredients": "Ingredients",
     "uploadImage": "Upload Image"
   },
@@ -103,6 +104,7 @@
     "id": "ID",
     "image": "Image",
     "description": "Description",
+    "name": "Name",
     "ingredients": "Ingredients",
     "actions": "Actions",
     "noImage": "No image",

@@ -162,6 +162,7 @@ const MenuItemsList: React.FC = () => {
           <TableHead>
             <TableRow>
               <TableCell>{t("common:menuItemsList.id")}</TableCell>
+              <TableCell>{t("common:menuItemsList.name")}</TableCell>
               <TableCell>{t("common:menuItemsList.image")}</TableCell>
               <TableCell>{t("common:menuItemsList.description")}</TableCell>
               <TableCell>{t("common:menuItemsList.ingredients")}</TableCell>
@@ -174,6 +175,7 @@ const MenuItemsList: React.FC = () => {
             {menuItems.map((menuItem) => (
               <TableRow key={menuItem.id || menuItem.menuItemId}>
                 <TableCell>{menuItem.menuItemId}</TableCell>
+                <TableCell>{menuItem.menuItemName}</TableCell>
                 <TableCell>
                   {menuItem.menuItemUrl ? (
                     <Card sx={{ maxWidth: 100 }}>
